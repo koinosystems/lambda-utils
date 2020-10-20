@@ -1,6 +1,6 @@
 import { config } from 'aws-sdk';
-import { DynamodbPool } from './dynamodb-pool';
-import { DynamodbPromise } from './dynamodb-promise';
+import { DynamodbPoolSingleton } from './dynamodb-pool';
+import { DynamodbClient } from './dynamodb-client';
 const { AWS_REGION, AWS_ACCESS_KEY, AWS_SECRET_ACCESS_KEY } = process.env;
 config.update({
     region: AWS_REGION,
@@ -9,8 +9,8 @@ config.update({
 });
 export class DynamodbDataSource {
     constructor() {
-        this.documentClient = DynamodbPool.getInstance().getDataSource();
-        this.dynamodbPromise = new DynamodbPromise(this.documentClient);
+        this.documentClient = DynamodbPoolSingleton.getInstance().getDataSource();
+        this.dynamodbClient = new DynamodbClient(this.documentClient);
     }
     mapToModelCollection(models) {
         return models.map((model) => this.modelToMap(model));
@@ -22,7 +22,7 @@ export class DynamodbDataSource {
         const nonNullAttributes = {};
         for (const key in model) {
             if (model[key]) {
-                nonNullAttributes[':' + key + 'Value'] = model[key] === '' ? null : model[key];
+                nonNullAttributes[`:${key}Value`] = model[key] ?? null;
             }
         }
         return nonNullAttributes;
@@ -31,20 +31,18 @@ export class DynamodbDataSource {
         const nonNullAttributes = {};
         for (const key in model) {
             if (model[key]) {
-                nonNullAttributes['#' + key] = key;
+                nonNullAttributes[`#${key}`] = key;
             }
         }
         return nonNullAttributes;
     }
     getNonNullUpdate(model) {
-        let nonNullUpdate = 'SET ';
+        const nonNullUpdate = [];
         for (const key in model) {
             if (model[key]) {
-                if (nonNullUpdate.length > 5)
-                    nonNullUpdate = nonNullUpdate + ', ';
-                nonNullUpdate = nonNullUpdate + '#' + key + ' =:' + key + 'Value';
+                nonNullUpdate.push(`#${key} =:${key}Value`);
             }
         }
-        return nonNullUpdate;
+        return 'SET ' + nonNullUpdate.join(', ');
     }
 }

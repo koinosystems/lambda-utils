@@ -2,8 +2,8 @@
 import { config } from 'aws-sdk';
 import DynamoDB from 'aws-sdk/clients/dynamodb';
 
-import { DynamodbPool } from './dynamodb-pool';
-import { DynamodbPromise } from './dynamodb-promise';
+import { DynamodbPoolSingleton } from './dynamodb-pool';
+import { DynamodbClient } from './dynamodb-client';
 
 const { AWS_REGION, AWS_ACCESS_KEY, AWS_SECRET_ACCESS_KEY } = process.env;
 
@@ -13,17 +13,15 @@ config.update({
   secretAccessKey: AWS_SECRET_ACCESS_KEY,
 });
 
-export interface IModel {
-  id: string;
-}
+export interface IModel {}
 
 export abstract class DynamodbDataSource<T, O = T> {
   public documentClient: DynamoDB.DocumentClient;
-  public dynamodbPromise: DynamodbPromise;
+  public dynamodbClient: DynamodbClient;
 
   constructor() {
-    this.documentClient = DynamodbPool.getInstance().getDataSource();
-    this.dynamodbPromise = new DynamodbPromise(this.documentClient);
+    this.documentClient = DynamodbPoolSingleton.getInstance().getDataSource();
+    this.dynamodbClient = new DynamodbClient(this.documentClient);
   }
 
   public abstract modelToMap(model: IModel): O;
@@ -42,7 +40,7 @@ export abstract class DynamodbDataSource<T, O = T> {
     const nonNullAttributes: any = {};
     for (const key in model) {
       if (model[key]) {
-        nonNullAttributes[':' + key + 'Value'] = model[key] === '' ? null : model[key];
+        nonNullAttributes[`:${key}Value`] = model[key] ?? null;
       }
     }
     return nonNullAttributes;
@@ -52,20 +50,19 @@ export abstract class DynamodbDataSource<T, O = T> {
     const nonNullAttributes: any = {};
     for (const key in model) {
       if (model[key]) {
-        nonNullAttributes['#' + key] = key;
+        nonNullAttributes[`#${key}`] = key;
       }
     }
     return nonNullAttributes;
   }
 
   getNonNullUpdate(model: any): Object {
-    let nonNullUpdate = 'SET ';
+    const nonNullUpdate: string[] = [];
     for (const key in model) {
       if (model[key]) {
-        if (nonNullUpdate.length > 5) nonNullUpdate = nonNullUpdate + ', ';
-        nonNullUpdate = nonNullUpdate + '#' + key + ' =:' + key + 'Value';
+        nonNullUpdate.push(`#${key} =:${key}Value`);
       }
     }
-    return nonNullUpdate;
+    return 'SET ' + nonNullUpdate.join(', ');
   }
 }

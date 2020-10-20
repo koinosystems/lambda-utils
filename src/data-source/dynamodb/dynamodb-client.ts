@@ -1,16 +1,15 @@
 /* eslint-disable no-useless-constructor */
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import { AWSError, DynamoDB } from 'aws-sdk';
 import { DocumentClient } from 'aws-sdk/lib/dynamodb/document_client';
 
-export class DynamodbPromise {
+export class DynamodbClient {
   constructor(private documentClient: DocumentClient) {}
 
-  async scan(query: DynamoDB.ScanInput): Promise<any> {
+  async scanAll(query: DynamoDB.ScanInput): Promise<any[]> {
     let items: any[] = [];
     let result;
     do {
-      result = await this.scanPromise(query);
+      result = await this.scan(query);
       query.ExclusiveStartKey = undefined;
       items = items.concat(result.Items);
       if (result.LastEvaluatedKey) {
@@ -21,7 +20,7 @@ export class DynamodbPromise {
     return items;
   }
 
-  async scanPromise(params: DynamoDB.ScanInput): Promise<any> {
+  async scan(params: DynamoDB.ScanInput): Promise<DynamoDB.ScanOutput> {
     return new Promise((resolve, reject) => {
       this.documentClient.scan(params, (err: AWSError, data: DocumentClient.ScanOutput) => {
         if (err) {
@@ -32,7 +31,7 @@ export class DynamodbPromise {
     });
   }
 
-  async getItem(params: DynamoDB.GetItemInput): Promise<any> {
+  async getItem(params: DynamoDB.GetItemInput): Promise<DocumentClient.GetItemOutput> {
     return new Promise((resolve, reject) => {
       this.documentClient.get(params, (err: AWSError, data: DocumentClient.GetItemOutput) => {
         if (err) {
@@ -43,7 +42,7 @@ export class DynamodbPromise {
     });
   }
 
-  async put(params: DynamoDB.PutItemInput): Promise<any> {
+  async put(params: DynamoDB.PutItemInput): Promise<DocumentClient.GetItemOutput> {
     return new Promise((resolve, reject) => {
       this.documentClient.put(params, (err: AWSError, data: DocumentClient.GetItemOutput) => {
         if (err) {
@@ -54,7 +53,7 @@ export class DynamodbPromise {
     });
   }
 
-  async update(params: DynamoDB.UpdateItemInput): Promise<any> {
+  async update(params: DynamoDB.UpdateItemInput): Promise<DocumentClient.UpdateItemOutput> {
     return new Promise((resolve, reject) => {
       this.documentClient.update(params, (err: AWSError, data: DocumentClient.UpdateItemOutput) => {
         if (err) {
@@ -65,7 +64,7 @@ export class DynamodbPromise {
     });
   }
 
-  async delete(params: DynamoDB.DeleteItemInput): Promise<any> {
+  async delete(params: DynamoDB.DeleteItemInput): Promise<DocumentClient.DeleteItemOutput> {
     return new Promise((resolve, reject) => {
       this.documentClient.delete(params, (err: AWSError, data: DocumentClient.DeleteItemOutput) => {
         if (err) {
@@ -76,23 +75,9 @@ export class DynamodbPromise {
     });
   }
 
-  async query(params: DynamoDB.QueryInput): Promise<any> {
-    return new Promise((resolve, reject) => {
-      this.documentClient.query(params, (err: AWSError, data: DocumentClient.QueryOutput) => {
-        if (err) {
-          if (err.code === 'ResourceNotFoundException') {
-            return resolve({});
-          }
-          return reject(err);
-        }
-        return resolve(data);
-      });
-    });
-  }
-
-  async queryPromise(params: DynamoDB.QueryInput): Promise<Array<any>> {
+  async queryAll(params: DynamoDB.QueryInput): Promise<any[]> {
     const query = params;
-    let items: Array<any> = [];
+    let items: any[] = [];
     let result: any = {
       LastEvaluatedKey: '',
     };
@@ -107,5 +92,19 @@ export class DynamodbPromise {
       }
     }
     return items;
+  }
+
+  async query(params: DynamoDB.QueryInput): Promise<DocumentClient.QueryOutput> {
+    return new Promise((resolve, reject) => {
+      this.documentClient.query(params, (err: AWSError, data: DocumentClient.QueryOutput) => {
+        if (err) {
+          if (err.code === 'ResourceNotFoundException') {
+            return resolve({});
+          }
+          return reject(err);
+        }
+        return resolve(data);
+      });
+    });
   }
 }

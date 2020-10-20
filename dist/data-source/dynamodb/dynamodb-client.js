@@ -1,12 +1,12 @@
-export class DynamodbPromise {
+export class DynamodbClient {
     constructor(documentClient) {
         this.documentClient = documentClient;
     }
-    async scan(query) {
+    async scanAll(query) {
         let items = [];
         let result;
         do {
-            result = await this.scanPromise(query);
+            result = await this.scan(query);
             query.ExclusiveStartKey = undefined;
             items = items.concat(result.Items);
             if (result.LastEvaluatedKey) {
@@ -15,7 +15,7 @@ export class DynamodbPromise {
         } while (result && result.LastEvaluatedKey);
         return items;
     }
-    async scanPromise(params) {
+    async scan(params) {
         return new Promise((resolve, reject) => {
             this.documentClient.scan(params, (err, data) => {
                 if (err) {
@@ -65,20 +65,7 @@ export class DynamodbPromise {
             });
         });
     }
-    async query(params) {
-        return new Promise((resolve, reject) => {
-            this.documentClient.query(params, (err, data) => {
-                if (err) {
-                    if (err.code === 'ResourceNotFoundException') {
-                        return resolve({});
-                    }
-                    return reject(err);
-                }
-                return resolve(data);
-            });
-        });
-    }
-    async queryPromise(params) {
+    async queryAll(params) {
         const query = params;
         let items = [];
         let result = {
@@ -95,5 +82,18 @@ export class DynamodbPromise {
             }
         }
         return items;
+    }
+    async query(params) {
+        return new Promise((resolve, reject) => {
+            this.documentClient.query(params, (err, data) => {
+                if (err) {
+                    if (err.code === 'ResourceNotFoundException') {
+                        return resolve({});
+                    }
+                    return reject(err);
+                }
+                return resolve(data);
+            });
+        });
     }
 }

@@ -1,11 +1,10 @@
 import DynamoDB from 'aws-sdk/clients/dynamodb';
-import { DynamodbPromise } from './dynamodb-promise';
+import { DynamodbClient } from './dynamodb-client';
 export interface IModel {
-    id: string;
 }
 export declare abstract class DynamodbDataSource<T, O = T> {
     documentClient: DynamoDB.DocumentClient;
-    dynamodbPromise: DynamodbPromise;
+    dynamodbClient: DynamodbClient;
     constructor();
     abstract modelToMap(model: IModel): O;
     abstract mapToModel(map: T): IModel;

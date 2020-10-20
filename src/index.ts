@@ -8,8 +8,6 @@ export { CloudsearchDataSource } from './data-source/cloudsearch/cloudsearch-dat
 
 /* DATA-SOURCE DYNAMODB */
 export { DynamodbDataSource, IModel } from './data-source/dynamodb/dynamodb-data-source';
-export { DynamodbPool } from './data-source/dynamodb/dynamodb-pool';
-export { DynamodbPromise } from './data-source/dynamodb/dynamodb-promise';
 
 /* DATA-SOURCE RDS */
 

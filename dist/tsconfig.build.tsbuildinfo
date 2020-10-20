@@ -1632,18 +1632,18 @@
         "affectsGlobalScope": false
       },
       "../src/data-source/dynamodb/dynamodb-pool.ts": {
-        "version": "ba0d1de72d6d7febc26a1a8d69b3d69218d7ce472d9e838581aac4c2a74db0f7",
-        "signature": "fc53cd634d955e49bda7d952fb0a12d7ea69ffdef18b89bedbd0a62689e56ff3",
+        "version": "f3daf1bea30f763e791a7e00394acf599e2e612f0fb877025a8d8d2b0947d2ad",
+        "signature": "bfd00497e68213ebc3e8655391c0d4bb4b4762bb3109e4af08fb13af9d56e871",
         "affectsGlobalScope": false
       },
-      "../src/data-source/dynamodb/dynamodb-promise.ts": {
-        "version": "0c9a0f0de5ab600e6b7dae83736a5f863fe4d24c853791c929bc2cb9e9783d8d",
-        "signature": "1403a2c3415ff23e2d41a09a3a1289f976bff6af36dd711e2edb404ae08e99b6",
+      "../src/data-source/dynamodb/dynamodb-client.ts": {
+        "version": "338738236b12aedca2419ec9b13f039f5b6a9ea1d054dd0dbbcd84bb9e62573a",
+        "signature": "b8483d60ba5f4b9bba1f1e500e38e6bb17a69766f812bb28d7f1aa0bceba6a28",
         "affectsGlobalScope": false
       },
       "../src/data-source/dynamodb/dynamodb-data-source.ts": {
-        "version": "d72c18f05254b342d98e5d4cd936964982bd33193e7e013896b5b2c25cd459cd",
-        "signature": "9b055cbd48830bf027691da485500437f02ffe80c062fbcea15f440ee5c07424",
+        "version": "c75c2eeb7538290da5003b916ce48fbdda3bd2c0070dbf29c2b55b1e2cc23752",
+        "signature": "54c7b20c0d2026d3abb03b698663183fccd1515b4f614486278ce13ab74be6af",
         "affectsGlobalScope": false
       },
       "../node_modules/@types/aws-lambda/handler.d.ts": {
@@ -1872,8 +1872,8 @@
         "affectsGlobalScope": false
       },
       "../src/index.ts": {
-        "version": "cf7191b0b04224d01a799a0dec8a1d1bd712951ed72d2918a79de63e7f3aac38",
-        "signature": "d23fc80ab039300806397118289ac10e28d2234206247502d416383deb1210f7",
+        "version": "c7c956302cdffd03415a0af2d2fd6969190c29d211e0495b5e51cc1a83a6caee",
+        "signature": "a505df827be30801ef605cce48ff0a84e89c12e14adfd9299ecfb4a442e4f57e",
         "affectsGlobalScope": false
       },
       "../node_modules/@types/node/globals.d.ts": {
@@ -4624,24 +4624,22 @@
         "../node_modules/aws-sdk/clients/cloudsearchdomain.d.ts",
         "../node_modules/aws-sdk/index.d.ts"
       ],
+      "../src/data-source/dynamodb/dynamodb-client.ts": [
+        "../node_modules/aws-sdk/index.d.ts",
+        "../node_modules/aws-sdk/lib/dynamodb/document_client.d.ts"
+      ],
       "../src/data-source/dynamodb/dynamodb-data-source.ts": [
         "../node_modules/aws-sdk/clients/dynamodb.d.ts",
         "../node_modules/aws-sdk/index.d.ts",
-        "../src/data-source/dynamodb/dynamodb-pool.ts",
-        "../src/data-source/dynamodb/dynamodb-promise.ts"
+        "../src/data-source/dynamodb/dynamodb-client.ts",
+        "../src/data-source/dynamodb/dynamodb-pool.ts"
       ],
       "../src/data-source/dynamodb/dynamodb-pool.ts": [
-        "../node_modules/aws-sdk/lib/dynamodb/document_client.d.ts"
-      ],
-      "../src/data-source/dynamodb/dynamodb-promise.ts": [
-        "../node_modules/aws-sdk/index.d.ts",
         "../node_modules/aws-sdk/lib/dynamodb/document_client.d.ts"
       ],
       "../src/index.ts": [
         "../src/data-source/cloudsearch/cloudsearch-data-source.ts",
         "../src/data-source/dynamodb/dynamodb-data-source.ts",
-        "../src/data-source/dynamodb/dynamodb-pool.ts",
-        "../src/data-source/dynamodb/dynamodb-promise.ts",
         "../src/presentation/os-error.ts",
         "../src/presentation/response-utils.ts",
         "../src/security/authorizer.ts",
@@ -7101,22 +7099,20 @@
       "../src/data-source/cloudsearch/cloudsearch-data-source.ts": [
         "../node_modules/aws-sdk/clients/cloudsearchdomain.d.ts"
       ],
-      "../src/data-source/dynamodb/dynamodb-data-source.ts": [
-        "../node_modules/aws-sdk/clients/dynamodb.d.ts",
-        "../src/data-source/dynamodb/dynamodb-promise.ts"
-      ],
-      "../src/data-source/dynamodb/dynamodb-pool.ts": [
+      "../src/data-source/dynamodb/dynamodb-client.ts": [
+        "../node_modules/aws-sdk/index.d.ts",
         "../node_modules/aws-sdk/lib/dynamodb/document_client.d.ts"
       ],
-      "../src/data-source/dynamodb/dynamodb-promise.ts": [
-        "../node_modules/aws-sdk/index.d.ts",
+      "../src/data-source/dynamodb/dynamodb-data-source.ts": [
+        "../node_modules/aws-sdk/clients/dynamodb.d.ts",
+        "../src/data-source/dynamodb/dynamodb-client.ts"
+      ],
+      "../src/data-source/dynamodb/dynamodb-pool.ts": [
         "../node_modules/aws-sdk/lib/dynamodb/document_client.d.ts"
       ],
       "../src/index.ts": [
         "../src/data-source/cloudsearch/cloudsearch-data-source.ts",
         "../src/data-source/dynamodb/dynamodb-data-source.ts",
-        "../src/data-source/dynamodb/dynamodb-pool.ts",
-        "../src/data-source/dynamodb/dynamodb-promise.ts",
         "../src/presentation/os-error.ts",
         "../src/presentation/response-utils.ts",
         "../src/security/authorizer.ts",
@@ -7552,9 +7548,9 @@
       "../node_modules/typescript/lib/lib.scripthost.d.ts",
       "../node_modules/typescript/lib/lib.webworker.importscripts.d.ts",
       "../src/data-source/cloudsearch/cloudsearch-data-source.ts",
+      "../src/data-source/dynamodb/dynamodb-client.ts",
       "../src/data-source/dynamodb/dynamodb-data-source.ts",
       "../src/data-source/dynamodb/dynamodb-pool.ts",
-      "../src/data-source/dynamodb/dynamodb-promise.ts",
       "../src/index.ts",
       "../src/presentation/os-error.ts",
       "../src/presentation/response-utils.ts",
