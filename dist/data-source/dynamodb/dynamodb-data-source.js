@@ -13,9 +13,9 @@ export class DynamodbDataSource {
         this.dynamodbPromise = new DynamodbPromise(this.documentClient);
     }
     mapToModelCollection(models) {
-        return models.map((model) => this.mapFromModel(model));
+        return models.map((model) => this.modelToMap(model));
     }
-    mapFromModelCollection(models) {
+    modelToMapCollection(models) {
         return models.map((model) => this.mapToModel(model));
     }
     getNonNullAttributeNames(model) {

@@ -1642,8 +1642,8 @@
         "affectsGlobalScope": false
       },
       "../src/data-source/dynamodb/dynamodb-data-source.ts": {
-        "version": "5c39f8b9b2510fd762f943c590893868a1bc2e8dc91ff3199fce4e2c0eee0852",
-        "signature": "5f2d11f4a8750174caafd44860bff60508888fb8b280266ac9730fbde1500cd1",
+        "version": "d72c18f05254b342d98e5d4cd936964982bd33193e7e013896b5b2c25cd459cd",
+        "signature": "9b055cbd48830bf027691da485500437f02ffe80c062fbcea15f440ee5c07424",
         "affectsGlobalScope": false
       },
       "../node_modules/@types/aws-lambda/handler.d.ts": {

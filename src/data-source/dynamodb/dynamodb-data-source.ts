@@ -13,7 +13,9 @@ config.update({
   secretAccessKey: AWS_SECRET_ACCESS_KEY,
 });
 
-export interface IModel {}
+export interface IModel {
+  id: string;
+}
 
 export abstract class DynamodbDataSource<T, O = T> {
   public documentClient: DynamoDB.DocumentClient;
@@ -24,15 +26,15 @@ export abstract class DynamodbDataSource<T, O = T> {
     this.dynamodbPromise = new DynamodbPromise(this.documentClient);
   }
 
-  public abstract mapFromModel(model: IModel): O;
+  public abstract modelToMap(model: IModel): O;
 
-  public abstract mapToModel(model: T): IModel;
+  public abstract mapToModel(map: T): IModel;
 
   public mapToModelCollection(models: IModel[]): O[] {
-    return models.map((model) => this.mapFromModel(model));
+    return models.map((model) => this.modelToMap(model));
   }
 
-  public mapFromModelCollection(models: T[]): IModel[] {
+  public modelToMapCollection(models: T[]): IModel[] {
     return models.map((model) => this.mapToModel(model));
   }
 
