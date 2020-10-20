@@ -1,19 +1,16 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.DynamodbDataSource = void 0;
-const aws_sdk_1 = require("aws-sdk");
-const dynamodb_pool_1 = require("./dynamodb-pool");
-const dynamodb_promise_1 = require("./dynamodb-promise");
+import { config } from 'aws-sdk';
+import { DynamodbPool } from './dynamodb-pool';
+import { DynamodbPromise } from './dynamodb-promise';
 const { AWS_REGION, AWS_ACCESS_KEY, AWS_SECRET_ACCESS_KEY } = process.env;
-aws_sdk_1.config.update({
+config.update({
     region: AWS_REGION,
     accessKeyId: AWS_ACCESS_KEY,
     secretAccessKey: AWS_SECRET_ACCESS_KEY,
 });
-class DynamodbDataSource {
+export class DynamodbDataSource {
     constructor() {
-        this.documentClient = dynamodb_pool_1.DynamodbPool.getInstance().getDataSource();
-        this.dynamodbPromise = new dynamodb_promise_1.DynamodbPromise(this.documentClient);
+        this.documentClient = DynamodbPool.getInstance().getDataSource();
+        this.dynamodbPromise = new DynamodbPromise(this.documentClient);
     }
     mapToModelCollection(models) {
         return models.map((model) => this.mapFromModel(model));
@@ -51,5 +48,3 @@ class DynamodbDataSource {
         return nonNullUpdate;
     }
 }
-exports.DynamodbDataSource = DynamodbDataSource;
-//# sourceMappingURL=dynamodb-data-source.js.map

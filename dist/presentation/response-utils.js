@@ -1,7 +1,4 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.responseError = exports.responseSuccess = exports.formatResponseDownload = exports.formatReponse = void 0;
-function formatReponse(statusCode, body, isBase64Encoded, headers) {
+export function formatReponse(statusCode, body, isBase64Encoded, headers) {
     const corsHeaders = {
         'Access-Control-Allow-Origin': '*',
         'Access-Control-Allow-Credentials': true,
@@ -15,8 +12,7 @@ function formatReponse(statusCode, body, isBase64Encoded, headers) {
         headers: corsHeaders
     }));
 }
-exports.formatReponse = formatReponse;
-function formatResponseDownload(statusCode, body, fileName) {
+export function formatResponseDownload(statusCode, body, fileName) {
     const corsHeaders = {
         'Access-Control-Allow-Origin': '*',
         'Access-Control-Allow-Credentials': true,
@@ -33,8 +29,7 @@ function formatResponseDownload(statusCode, body, fileName) {
         headers: corsHeaders
     }));
 }
-exports.formatResponseDownload = formatResponseDownload;
-function responseSuccess(statusCode = 200, headers = {}, data = {}) {
+export function responseSuccess(statusCode = 200, headers = {}, data = {}) {
     const corsHeaders = {
         'Access-Control-Allow-Origin': '*',
         'Access-Control-Allow-Credentials': true,
@@ -54,8 +49,7 @@ function responseSuccess(statusCode = 200, headers = {}, data = {}) {
     };
     return response;
 }
-exports.responseSuccess = responseSuccess;
-function responseError(statusCode = 500, headers = {}, err) {
+export function responseError(statusCode = 500, headers = {}, err) {
     console.log(err);
     const response = {
         statusCode,
@@ -76,5 +70,3 @@ function responseError(statusCode = 500, headers = {}, err) {
     }
     return response;
 }
-exports.responseError = responseError;
-//# sourceMappingURL=response-utils.js.map

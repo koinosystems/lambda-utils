@@ -1,8 +1,5 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.Authorizer = void 0;
-const os_error_1 = require("../presentation/os-error");
-class Authorizer {
+import { OSError } from '../presentation/os-error';
+export class Authorizer {
     constructor(credentialService) {
         this.credentialService = credentialService;
     }
@@ -14,11 +11,11 @@ class Authorizer {
                     return Promise.resolve(credential);
                 }
             }
-            throw new os_error_1.OSError('Unauthorized', 401);
+            throw new OSError('Unauthorized', 401);
         }
         catch (err) {
             console.log('||error|| ', err);
-            throw new os_error_1.OSError(err.message, err.code ? err.code : err.name ? parseInt(err.name) : 500);
+            throw new OSError(err.message, err.code ? err.code : err.name ? parseInt(err.name) : 500);
         }
     }
     async authorizeByForbiddenRoles(forbiddenRoles) {
@@ -33,7 +30,7 @@ class Authorizer {
         }
         catch (err) {
             console.log('||error|| ', err);
-            throw new os_error_1.OSError(err.message, err.code ? err.code : err.name ? parseInt(err.name) : 500);
+            throw new OSError(err.message, err.code ? err.code : err.name ? parseInt(err.name) : 500);
         }
     }
     async authorizeByUserId(id) {
@@ -44,5 +41,3 @@ class Authorizer {
         return Promise.resolve(credential);
     }
 }
-exports.Authorizer = Authorizer;
-//# sourceMappingURL=authorizer.js.map

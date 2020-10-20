@@ -1,7 +1,4 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.DynamodbPromise = void 0;
-class DynamodbPromise {
+export class DynamodbPromise {
     constructor(documentClient) {
         this.documentClient = documentClient;
     }
@@ -100,5 +97,3 @@ class DynamodbPromise {
         return items;
     }
 }
-exports.DynamodbPromise = DynamodbPromise;
-//# sourceMappingURL=dynamodb-promise.js.map

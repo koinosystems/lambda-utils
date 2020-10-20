@@ -1,20 +1,14 @@
-"use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.CloudsearchDataSource = void 0;
-const aws_sdk_1 = require("aws-sdk");
-const cloudsearchdomain_1 = __importDefault(require("aws-sdk/clients/cloudsearchdomain"));
+import { config } from 'aws-sdk';
+import CloudSearchDomain from 'aws-sdk/clients/cloudsearchdomain';
 const { AWS_REGION, AWS_ACCESS_KEY, AWS_SECRET_ACCESS_KEY } = process.env;
-aws_sdk_1.config.update({
+config.update({
     region: AWS_REGION,
     accessKeyId: AWS_ACCESS_KEY,
     secretAccessKey: AWS_SECRET_ACCESS_KEY
 });
-class CloudsearchDataSource {
+export class CloudsearchDataSource {
     constructor(domain) {
-        this.cloudSearchDomain = new cloudsearchdomain_1.default({
+        this.cloudSearchDomain = new CloudSearchDomain({
             endpoint: domain,
             apiVersion: '2013-01-01'
         });
@@ -103,5 +97,3 @@ class CloudsearchDataSource {
         return `(phrase ${options}'${phrase}')`;
     }
 }
-exports.CloudsearchDataSource = CloudsearchDataSource;
-//# sourceMappingURL=cloudsearch-data-source.js.map
