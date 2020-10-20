@@ -1,6 +1,6 @@
 {
   "name": "lambda-utils",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "koinosystems lambda-utils",
   "main": "index.js",
   "dependencies": {
