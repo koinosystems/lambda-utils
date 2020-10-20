@@ -2,14 +2,17 @@
 
 export interface IUser {
   email: string;
+  token: string;
+  refreshToken: string;
+  [key: string]: any;
 }
 
-export interface ISecurityService {
-  createUser(email: string, password: string): Promise<void>;
+export interface IUserService {
+  create(email: string, password: string): Promise<void>;
 
-  loginUser(email: string, password: string): Promise<IUser | null>;
+  login(email: string, password: string): Promise<IUser | null>;
 
-  logoutUser(email: string): Promise<void>;
+  logout(email: string): Promise<void>;
 
   changePassword(
     email: string,
@@ -27,5 +30,7 @@ export interface ISecurityService {
     passwordConfirmation: string
   ): Promise<void>;
 
-  deleteUser(email: string): Promise<void>;
+  delete(email: string): Promise<void>;
+
+  confirmDelete(email: string, verificationCode?: string): Promise<void>;
 }

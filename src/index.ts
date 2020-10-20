@@ -1,6 +1,6 @@
 /* SECURITY */
 export { ICredential, ICredentialService } from './security/credential';
-export { IUser, ISecurityService } from './security/security';
+export { IUser, IUserService } from './security/user';
 export { Authorizer } from './security/authorizer';
 
 /* DATA-SOURCE CLOUDSEARCH */

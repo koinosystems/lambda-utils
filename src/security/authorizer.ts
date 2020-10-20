@@ -1,14 +1,14 @@
 /* eslint-disable no-useless-constructor */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { OSError } from '../presentation/os-error';
-import { ICredential, ICredentialService, IRole } from './credential';
+import { ICredential, IRole } from './credential';
 
 export class Authorizer {
-  constructor(private credentialService: ICredentialService) {}
-
-  public async authorizeByAllowedRoles(allowedRoles: IRole[]): Promise<ICredential> {
+  public async authorizeByAllowedRoles(
+    credential: ICredential,
+    allowedRoles: IRole[]
+  ): Promise<ICredential> {
     try {
-      const credential = await this.credentialService.getCredential();
       for (const allowedRole of allowedRoles) {
         if (credential.role === allowedRole) {
           return Promise.resolve(credential);
@@ -21,9 +21,11 @@ export class Authorizer {
     }
   }
 
-  public async authorizeByForbiddenRoles(forbiddenRoles: IRole[]): Promise<ICredential> {
+  public async authorizeByForbiddenRoles(
+    credential: ICredential,
+    forbiddenRoles: IRole[]
+  ): Promise<ICredential> {
     try {
-      const credential = await this.credentialService.getCredential();
       for (const forbiddenRole of forbiddenRoles) {
         if (credential.role === forbiddenRole) {
           throw new Error('Unauthorized');
@@ -36,8 +38,7 @@ export class Authorizer {
     }
   }
 
-  public async authorizeByUserId(id: string): Promise<ICredential> {
-    const credential = await this.credentialService.getCredential();
+  public async authorizeByUserId(credential: ICredential, id: string): Promise<ICredential> {
     if (id !== credential.userId) {
       throw new Error('Unauthorized');
     }
