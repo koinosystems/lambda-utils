@@ -1,9 +1,9 @@
 /* eslint-disable no-useless-constructor */
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { OSError } from '../presentation/os-error';
+import { OSError } from '../presentation/os.error';
 import { ICredential, IRole } from './credential';
 
-export class Authorizer {
+export class AuthorizerUtils {
   public async authorizeByAllowedRoles(
     credential: ICredential,
     allowedRoles: IRole[]

@@ -1,5 +1,5 @@
-import { OSError } from '../presentation/os-error';
-export class Authorizer {
+import { OSError } from '../presentation/os.error';
+export class AuthorizerUtils {
     async authorizeByAllowedRoles(credential, allowedRoles) {
         try {
             for (const allowedRole of allowedRoles) {

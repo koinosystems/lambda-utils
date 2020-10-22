@@ -1,6 +1,6 @@
 import { config } from 'aws-sdk';
-import { DynamodbPoolSingleton } from './dynamodb-pool';
-import { DynamodbClient } from './dynamodb-client';
+import { DocumentClient } from 'aws-sdk/lib/dynamodb/document_client';
+import { DynamodbClient } from './dynamodb.client';
 const { AWS_REGION, AWS_ACCESS_KEY, AWS_SECRET_ACCESS_KEY } = process.env;
 config.update({
     region: AWS_REGION,
@@ -9,7 +9,7 @@ config.update({
 });
 export class DynamodbDataSource {
     constructor() {
-        this.documentClient = DynamodbPoolSingleton.getInstance().getDataSource();
+        this.documentClient = new DocumentClient();
         this.dynamodbClient = new DynamodbClient(this.documentClient);
     }
     mapToModelCollection(models) {

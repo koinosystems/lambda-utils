@@ -1,10 +1,10 @@
 export class BaseUseCase {
-    async execute(params) {
+    async execute() {
         try {
             return await this.buildUseCase();
         }
         catch (err) {
-            console.log('||error||', err);
+            console.error(err);
             throw err;
         }
     }

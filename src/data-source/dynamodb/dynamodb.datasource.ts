@@ -1,9 +1,8 @@
 /* eslint-disable @typescript-eslint/no-empty-interface */
 import { config } from 'aws-sdk';
-import DynamoDB from 'aws-sdk/clients/dynamodb';
-
-import { DynamodbPoolSingleton } from './dynamodb-pool';
-import { DynamodbClient } from './dynamodb-client';
+import { DocumentClient } from 'aws-sdk/lib/dynamodb/document_client';
+import { DynamodbClient } from './dynamodb.client';
+import { IModel } from './dynamodb.model';
 
 const { AWS_REGION, AWS_ACCESS_KEY, AWS_SECRET_ACCESS_KEY } = process.env;
 
@@ -13,16 +12,9 @@ config.update({
   secretAccessKey: AWS_SECRET_ACCESS_KEY,
 });
 
-export interface IModel {}
-
 export abstract class DynamodbDataSource<T, O = T> {
-  public documentClient: DynamoDB.DocumentClient;
-  public dynamodbClient: DynamodbClient;
-
-  constructor() {
-    this.documentClient = DynamodbPoolSingleton.getInstance().getDataSource();
-    this.dynamodbClient = new DynamodbClient(this.documentClient);
-  }
+  protected documentClient = new DocumentClient();
+  protected dynamodbClient = new DynamodbClient(this.documentClient);
 
   public abstract modelToMap(model: IModel): O;
 

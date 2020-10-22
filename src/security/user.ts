@@ -17,8 +17,8 @@ export interface IUserService {
   changePassword(
     email: string,
     oldPassword: string,
-    newPassword: string,
-    passwordConfirmation: string
+    oldPasswordConfirmation: string,
+    newPassword: string
   ): Promise<void>;
 
   forgotPassword(email: string): Promise<void>;
@@ -26,8 +26,9 @@ export interface IUserService {
   confirmPassword(
     email: string,
     verificationCode: string,
-    newPassword: string,
-    passwordConfirmation: string
+    oldPassword: string,
+    oldPasswordConfirmation: string,
+    newPassword: string
   ): Promise<void>;
 
   delete(email: string): Promise<void>;

@@ -4,13 +4,13 @@ const { AWS_REGION, AWS_ACCESS_KEY, AWS_SECRET_ACCESS_KEY } = process.env;
 config.update({
     region: AWS_REGION,
     accessKeyId: AWS_ACCESS_KEY,
-    secretAccessKey: AWS_SECRET_ACCESS_KEY
+    secretAccessKey: AWS_SECRET_ACCESS_KEY,
 });
 export class CloudsearchDataSource {
     constructor(domain) {
         this.cloudSearchDomain = new CloudSearchDomain({
             endpoint: domain,
-            apiVersion: '2013-01-01'
+            apiVersion: '2013-01-01',
         });
     }
     async search(params) {
@@ -42,43 +42,37 @@ export class CloudsearchDataSource {
         if (min && max) {
             return `(range field=${field} ['${min}','${max}'])`;
         }
-        else if (min) {
+        if (min) {
             return `(range field=${field} ['${min}',})`;
         }
-        else if (max) {
+        if (max) {
             return `(range field=${field} {,'${max}'])`;
         }
-        else {
-            return '';
-        }
+        return '';
     }
     rangePrice(field, min, max) {
         if (min != null && max != null && min !== undefined && max !== undefined) {
             return `(range field=${field} ['${min}','${max}'])`;
         }
-        else if (min) {
+        if (min) {
             return `(range field=${field} ['${min}',})`;
         }
-        else if (max) {
+        if (max) {
             return `(range field=${field} {,'${max}'])`;
         }
-        else {
-            return '';
-        }
+        return '';
     }
     rangeDate2(field, min, max) {
         if (min && max) {
             return `(range field=${field} ['${min}','${max}'])`;
         }
-        else if (min) {
+        if (min) {
             return `(range field=${field} ['${min}',})`;
         }
-        else if (max) {
+        if (max) {
             return `(range field=${field} {,'${max}'])`;
         }
-        else {
-            return '';
-        }
+        return '';
     }
     term(term, field, boost) {
         let options = '';

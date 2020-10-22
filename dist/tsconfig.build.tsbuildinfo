@@ -217,18 +217,18 @@
         "affectsGlobalScope": false
       },
       "../src/security/user.ts": {
-        "version": "85d9f5ba43ea0363a5def8e01dd7b8f1c48446aeafb820c4df61463a22deef1c",
-        "signature": "a38c0b08ad90378de8abb7679557654ab127d764c4f8467de55eea6a1e44375e",
+        "version": "1a9a8579d66f90751d1e4010d2e792611b4798c8155b5ab470545d812200474a",
+        "signature": "a61f6925dab7271fb0c7812af153af3d8939da878f89800c87650af639fdeada",
         "affectsGlobalScope": false
       },
-      "../src/presentation/os-error.ts": {
-        "version": "8a769af657cdd91b57ebbcd5b3bc9f9ba748a0ec51f72669b6abae441b3feea4",
+      "../src/presentation/os.error.ts": {
+        "version": "4918fdfaf1d21eb09f82ef2e6fe47d151fe6cfb2319e191013b2405a83b2d337",
         "signature": "1c7ac56edd00d86e30fb7897b671728017886ffedf0ae3c65ea02c4d280e9b5c",
         "affectsGlobalScope": false
       },
-      "../src/security/authorizer.ts": {
-        "version": "1d6a9b3b7c855a0911bfefa6db6c3412eeaa450388e109d55e6c8248429f34dc",
-        "signature": "f960f5d718392a8059499012745b3e4d887a19c6aa600e5b089f0980b071a518",
+      "../src/security/authorizer.utils.ts": {
+        "version": "3d9bfeb3805419a1aebf2b8b82b118d9bc21b3840fd6a2946a15433dcdddee2f",
+        "signature": "19cac648803ac75549a154b4eed4961117a863c45061fc12be65a2c23c58aeb9",
         "affectsGlobalScope": false
       },
       "../node_modules/aws-sdk/lib/error.d.ts": {
@@ -1626,24 +1626,69 @@
         "signature": "1b8e2370aa2872687e7ab84dcf4c565ad5515b28c098b11d68a2d67d5e51095f",
         "affectsGlobalScope": false
       },
-      "../src/data-source/cloudsearch/cloudsearch-data-source.ts": {
-        "version": "fc8bb98df2718a0e8b56b76412ea6e4519c95dbfdb943a0338f3d5c991adc675",
+      "../src/data-source/cloudsearch/cloudsearch.datasource.ts": {
+        "version": "5768c17e1bb44c4720e4e42eacee631561270c25cc85886454d5824d39104c50",
         "signature": "34a1dc55b1dd5816123b5910de04575817c1545554b08dfb49e20ed918b1ef81",
         "affectsGlobalScope": false
       },
-      "../src/data-source/dynamodb/dynamodb-pool.ts": {
-        "version": "f3daf1bea30f763e791a7e00394acf599e2e612f0fb877025a8d8d2b0947d2ad",
-        "signature": "bfd00497e68213ebc3e8655391c0d4bb4b4762bb3109e4af08fb13af9d56e871",
-        "affectsGlobalScope": false
-      },
-      "../src/data-source/dynamodb/dynamodb-client.ts": {
+      "../src/data-source/dynamodb/dynamodb.client.ts": {
         "version": "338738236b12aedca2419ec9b13f039f5b6a9ea1d054dd0dbbcd84bb9e62573a",
         "signature": "b8483d60ba5f4b9bba1f1e500e38e6bb17a69766f812bb28d7f1aa0bceba6a28",
         "affectsGlobalScope": false
       },
-      "../src/data-source/dynamodb/dynamodb-data-source.ts": {
-        "version": "c75c2eeb7538290da5003b916ce48fbdda3bd2c0070dbf29c2b55b1e2cc23752",
-        "signature": "54c7b20c0d2026d3abb03b698663183fccd1515b4f614486278ce13ab74be6af",
+      "../src/data-source/dynamodb/dynamodb.model.ts": {
+        "version": "a661d2954f82cece9371b60a51e3ec9c18f2d695d846836d97bb73c4ef06f856",
+        "signature": "bbb5fb6711732aa08c9a36413f10cd1422ab783d910dd21a28b507f1fa8e1db3",
+        "affectsGlobalScope": false
+      },
+      "../src/data-source/dynamodb/dynamodb.datasource.ts": {
+        "version": "124968149b13ac48ec4099aa28475e6d094b529e8b97eedc8120411b9018662b",
+        "signature": "790fafe66ea1395e784ec65b825539e34d00bca6644383e3efc32da4616d5788",
+        "affectsGlobalScope": false
+      },
+      "../src/data-source/rds/rds.model.ts": {
+        "version": "286881cbcb79e39cfc34ad2dd96ec58295fe2fb2e10320f0cddc19bef1a7a48c",
+        "signature": "1596528cc19a232cb4e8a31c6d92692d23b17cd8993c82bb4f00a977d4282bea",
+        "affectsGlobalScope": false
+      },
+      "../src/data-source/rds/rds.datasource.ts": {
+        "version": "6d410858f176f9f699913de890aa100d989bbb0c4e7bee344a955657f92d8476",
+        "signature": "8165502b18f9b8debb48380d580c714645f4409c712ae538abee15ccba169b03",
+        "affectsGlobalScope": false
+      },
+      "../src/message/sns/sns.client.ts": {
+        "version": "afcdc587c9075bc353ac454ba874a8833e8c7c8f1fc7577feb55bb113b8e5286",
+        "signature": "1257ac1b556605707f1aabb04c6dbd075f81452e5d98c3d94e840dd0f8e824f0",
+        "affectsGlobalScope": false
+      },
+      "../src/message/sns/sns.message.ts": {
+        "version": "dab49c27557f3102e9df2e61178e66e4f8fc7f7501a785ba155f556b8b8f662b",
+        "signature": "7225853520dd550787353b5620a0454ea539d32c50b42a8cdb23efdacdd8a364",
+        "affectsGlobalScope": false
+      },
+      "../src/message/ses/ses-email-content.model.ts": {
+        "version": "cf0c3584186ee31c4e5992f695eda5aec6a9b1782e3ee57931e88a2723918126",
+        "signature": "ad5c4a2e363dd93f4f2393c38fbcbac99a5c234e5500ce968bb245c6c6ccf0f4",
+        "affectsGlobalScope": false
+      },
+      "../src/message/ses/ses.client.ts": {
+        "version": "e741c23ad91d6bc90fd4b7d42efca760cc189ca86a8ec9a4886428c161c95a04",
+        "signature": "5c538739f11dd91171aa212802ba3db04ac8cde80d3981f2c6ba3f664d593e86",
+        "affectsGlobalScope": false
+      },
+      "../src/message/ses/ses.message.ts": {
+        "version": "2c3018e47fa2493e98acdd24f8a9cda5b43780b7f87a97b5e35ad7b8688e9404",
+        "signature": "af7279e7eb27eed341dd5125c3f099733c19f957c0492a4ab3554bb904e4a036",
+        "affectsGlobalScope": false
+      },
+      "../src/logger/logger.ts": {
+        "version": "cf93f1e3dd71c81c512f3188a19e795fdabc12882b4fde1156f6ed1ca596dcb6",
+        "signature": "ed855d34c4865888b232bae33560ede4511c09df862ee066b0e44944bf6ccf77",
+        "affectsGlobalScope": false
+      },
+      "../src/logger/console/console.logger.ts": {
+        "version": "a5acc76a7037129c98b2886b498da13fee15eef756210bd6c0098bd1f240189e",
+        "signature": "137efd81a229b393d461f0323346e0f9fcd3183f86ff9c273138f69ce03654d6",
         "affectsGlobalScope": false
       },
       "../node_modules/@types/aws-lambda/handler.d.ts": {
@@ -1861,19 +1906,19 @@
         "signature": "29d66bdac3618d657cba91b004bab1dea66473e514ca9ac88aba43919542c527",
         "affectsGlobalScope": false
       },
-      "../src/presentation/response-utils.ts": {
+      "../src/presentation/response.utils.ts": {
         "version": "4eedd94ca30afa1737096ca249f0b45812e2b5fbfa0d3dba31bf23824ceb266e",
         "signature": "fde443f10847667d5bb451723f087d35d8cab5c34a8d7857b6fb51dd98bdc48e",
         "affectsGlobalScope": false
       },
-      "../src/use-cases/base-use-case.ts": {
-        "version": "550156b514c662bd5b5469bb4704d60e56f3b62f90622963b96b34c3a88f7ce5",
-        "signature": "9d0844909ede819ebd0aa5d04657974cd2e3fd0452bde4d1d7235f9fcfec9f41",
+      "../src/use-cases/base.usecase.ts": {
+        "version": "bb776ee28d58b313d538fd3be6dc90901f6b7b0bdd5fec1afd3f3df586e0ac44",
+        "signature": "c68b2f3d82fd4acf6e657bc4de070f53616421cefa81e22bcddc830e9be60192",
         "affectsGlobalScope": false
       },
       "../src/index.ts": {
-        "version": "c7c956302cdffd03415a0af2d2fd6969190c29d211e0495b5e51cc1a83a6caee",
-        "signature": "a505df827be30801ef605cce48ff0a84e89c12e14adfd9299ecfb4a442e4f57e",
+        "version": "86348c3377700f07d79a26ee41945ee55c7cb69a310a6f1dc0bc1c575be418d0",
+        "signature": "63e2fce347317fd16746349623d0740c8b83fe1a91a721884be216c1ce5a02a1",
         "affectsGlobalScope": false
       },
       "../node_modules/@types/node/globals.d.ts": {
@@ -4620,38 +4665,68 @@
       "../node_modules/pretty-format/build/index.d.ts": [
         "../node_modules/pretty-format/build/types.d.ts"
       ],
-      "../src/data-source/cloudsearch/cloudsearch-data-source.ts": [
+      "../src/data-source/cloudsearch/cloudsearch.datasource.ts": [
         "../node_modules/aws-sdk/clients/cloudsearchdomain.d.ts",
         "../node_modules/aws-sdk/index.d.ts"
       ],
-      "../src/data-source/dynamodb/dynamodb-client.ts": [
+      "../src/data-source/dynamodb/dynamodb.client.ts": [
         "../node_modules/aws-sdk/index.d.ts",
         "../node_modules/aws-sdk/lib/dynamodb/document_client.d.ts"
       ],
-      "../src/data-source/dynamodb/dynamodb-data-source.ts": [
-        "../node_modules/aws-sdk/clients/dynamodb.d.ts",
+      "../src/data-source/dynamodb/dynamodb.datasource.ts": [
         "../node_modules/aws-sdk/index.d.ts",
-        "../src/data-source/dynamodb/dynamodb-client.ts",
-        "../src/data-source/dynamodb/dynamodb-pool.ts"
+        "../node_modules/aws-sdk/lib/dynamodb/document_client.d.ts",
+        "../src/data-source/dynamodb/dynamodb.client.ts",
+        "../src/data-source/dynamodb/dynamodb.model.ts"
       ],
-      "../src/data-source/dynamodb/dynamodb-pool.ts": [
-        "../node_modules/aws-sdk/lib/dynamodb/document_client.d.ts"
+      "../src/data-source/rds/rds.datasource.ts": [
+        "../node_modules/aws-sdk/index.d.ts",
+        "../src/data-source/rds/rds.model.ts"
       ],
       "../src/index.ts": [
-        "../src/data-source/cloudsearch/cloudsearch-data-source.ts",
-        "../src/data-source/dynamodb/dynamodb-data-source.ts",
-        "../src/presentation/os-error.ts",
-        "../src/presentation/response-utils.ts",
-        "../src/security/authorizer.ts",
+        "../src/data-source/cloudsearch/cloudsearch.datasource.ts",
+        "../src/data-source/dynamodb/dynamodb.datasource.ts",
+        "../src/data-source/dynamodb/dynamodb.model.ts",
+        "../src/data-source/rds/rds.datasource.ts",
+        "../src/data-source/rds/rds.model.ts",
+        "../src/logger/console/console.logger.ts",
+        "../src/logger/logger.ts",
+        "../src/message/ses/ses-email-content.model.ts",
+        "../src/message/ses/ses.message.ts",
+        "../src/message/sns/sns.message.ts",
+        "../src/presentation/os.error.ts",
+        "../src/presentation/response.utils.ts",
+        "../src/security/authorizer.utils.ts",
         "../src/security/credential.ts",
         "../src/security/user.ts",
-        "../src/use-cases/base-use-case.ts"
+        "../src/use-cases/base.usecase.ts"
       ],
-      "../src/presentation/response-utils.ts": [
+      "../src/logger/console/console.logger.ts": [
+        "../src/logger/logger.ts"
+      ],
+      "../src/message/ses/ses.client.ts": [
+        "../node_modules/aws-sdk/clients/sesv2.d.ts",
+        "../node_modules/aws-sdk/index.d.ts",
+        "../src/message/ses/ses-email-content.model.ts"
+      ],
+      "../src/message/ses/ses.message.ts": [
+        "../node_modules/aws-sdk/index.d.ts",
+        "../src/message/ses/ses-email-content.model.ts",
+        "../src/message/ses/ses.client.ts"
+      ],
+      "../src/message/sns/sns.client.ts": [
+        "../node_modules/aws-sdk/clients/sns.d.ts",
+        "../node_modules/aws-sdk/index.d.ts"
+      ],
+      "../src/message/sns/sns.message.ts": [
+        "../node_modules/aws-sdk/index.d.ts",
+        "../src/message/sns/sns.client.ts"
+      ],
+      "../src/presentation/response.utils.ts": [
         "../node_modules/@types/aws-lambda/index.d.ts"
       ],
-      "../src/security/authorizer.ts": [
-        "../src/presentation/os-error.ts",
+      "../src/security/authorizer.utils.ts": [
+        "../src/presentation/os.error.ts",
         "../src/security/credential.ts"
       ]
     },
@@ -7096,34 +7171,60 @@
       "../node_modules/pretty-format/build/index.d.ts": [
         "../node_modules/pretty-format/build/types.d.ts"
       ],
-      "../src/data-source/cloudsearch/cloudsearch-data-source.ts": [
+      "../src/data-source/cloudsearch/cloudsearch.datasource.ts": [
         "../node_modules/aws-sdk/clients/cloudsearchdomain.d.ts"
       ],
-      "../src/data-source/dynamodb/dynamodb-client.ts": [
+      "../src/data-source/dynamodb/dynamodb.client.ts": [
         "../node_modules/aws-sdk/index.d.ts",
         "../node_modules/aws-sdk/lib/dynamodb/document_client.d.ts"
       ],
-      "../src/data-source/dynamodb/dynamodb-data-source.ts": [
-        "../node_modules/aws-sdk/clients/dynamodb.d.ts",
-        "../src/data-source/dynamodb/dynamodb-client.ts"
+      "../src/data-source/dynamodb/dynamodb.datasource.ts": [
+        "../node_modules/aws-sdk/lib/dynamodb/document_client.d.ts",
+        "../src/data-source/dynamodb/dynamodb.client.ts",
+        "../src/data-source/dynamodb/dynamodb.model.ts"
       ],
-      "../src/data-source/dynamodb/dynamodb-pool.ts": [
-        "../node_modules/aws-sdk/lib/dynamodb/document_client.d.ts"
+      "../src/data-source/rds/rds.datasource.ts": [
+        "../src/data-source/rds/rds.model.ts"
       ],
       "../src/index.ts": [
-        "../src/data-source/cloudsearch/cloudsearch-data-source.ts",
-        "../src/data-source/dynamodb/dynamodb-data-source.ts",
-        "../src/presentation/os-error.ts",
-        "../src/presentation/response-utils.ts",
-        "../src/security/authorizer.ts",
+        "../src/data-source/cloudsearch/cloudsearch.datasource.ts",
+        "../src/data-source/dynamodb/dynamodb.datasource.ts",
+        "../src/data-source/dynamodb/dynamodb.model.ts",
+        "../src/data-source/rds/rds.datasource.ts",
+        "../src/data-source/rds/rds.model.ts",
+        "../src/logger/console/console.logger.ts",
+        "../src/logger/logger.ts",
+        "../src/message/ses/ses-email-content.model.ts",
+        "../src/message/ses/ses.message.ts",
+        "../src/message/sns/sns.message.ts",
+        "../src/presentation/os.error.ts",
+        "../src/presentation/response.utils.ts",
+        "../src/security/authorizer.utils.ts",
         "../src/security/credential.ts",
         "../src/security/user.ts",
-        "../src/use-cases/base-use-case.ts"
+        "../src/use-cases/base.usecase.ts"
       ],
-      "../src/presentation/response-utils.ts": [
+      "../src/logger/console/console.logger.ts": [
+        "../src/logger/logger.ts"
+      ],
+      "../src/message/ses/ses.client.ts": [
+        "../node_modules/aws-sdk/clients/sesv2.d.ts",
+        "../src/message/ses/ses-email-content.model.ts"
+      ],
+      "../src/message/ses/ses.message.ts": [
+        "../src/message/ses/ses-email-content.model.ts",
+        "../src/message/ses/ses.client.ts"
+      ],
+      "../src/message/sns/sns.client.ts": [
+        "../node_modules/aws-sdk/clients/sns.d.ts"
+      ],
+      "../src/message/sns/sns.message.ts": [
+        "../src/message/sns/sns.client.ts"
+      ],
+      "../src/presentation/response.utils.ts": [
         "../node_modules/@types/aws-lambda/index.d.ts"
       ],
-      "../src/security/authorizer.ts": [
+      "../src/security/authorizer.utils.ts": [
         "../src/security/credential.ts"
       ]
     },
@@ -7547,17 +7648,26 @@
       "../node_modules/typescript/lib/lib.esnext.intl.d.ts",
       "../node_modules/typescript/lib/lib.scripthost.d.ts",
       "../node_modules/typescript/lib/lib.webworker.importscripts.d.ts",
-      "../src/data-source/cloudsearch/cloudsearch-data-source.ts",
-      "../src/data-source/dynamodb/dynamodb-client.ts",
-      "../src/data-source/dynamodb/dynamodb-data-source.ts",
-      "../src/data-source/dynamodb/dynamodb-pool.ts",
+      "../src/data-source/cloudsearch/cloudsearch.datasource.ts",
+      "../src/data-source/dynamodb/dynamodb.client.ts",
+      "../src/data-source/dynamodb/dynamodb.datasource.ts",
+      "../src/data-source/dynamodb/dynamodb.model.ts",
+      "../src/data-source/rds/rds.datasource.ts",
+      "../src/data-source/rds/rds.model.ts",
       "../src/index.ts",
-      "../src/presentation/os-error.ts",
-      "../src/presentation/response-utils.ts",
-      "../src/security/authorizer.ts",
+      "../src/logger/console/console.logger.ts",
+      "../src/logger/logger.ts",
+      "../src/message/ses/ses-email-content.model.ts",
+      "../src/message/ses/ses.client.ts",
+      "../src/message/ses/ses.message.ts",
+      "../src/message/sns/sns.client.ts",
+      "../src/message/sns/sns.message.ts",
+      "../src/presentation/os.error.ts",
+      "../src/presentation/response.utils.ts",
+      "../src/security/authorizer.utils.ts",
       "../src/security/credential.ts",
       "../src/security/user.ts",
-      "../src/use-cases/base-use-case.ts"
+      "../src/use-cases/base.usecase.ts"
     ]
   },
   "version": "4.0.3"
