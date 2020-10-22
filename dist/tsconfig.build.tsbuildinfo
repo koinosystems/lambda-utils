@@ -1907,8 +1907,8 @@
         "affectsGlobalScope": false
       },
       "../src/presentation/response.utils.ts": {
-        "version": "4eedd94ca30afa1737096ca249f0b45812e2b5fbfa0d3dba31bf23824ceb266e",
-        "signature": "fde443f10847667d5bb451723f087d35d8cab5c34a8d7857b6fb51dd98bdc48e",
+        "version": "68f87acfabd939703f27b31716e84b0c90ca4ccf725dc496043018011838c30f",
+        "signature": "ac626efc21f1cd8b60325c0934b13eadf84f34d70b419a7dbc9456533c3a3a30",
         "affectsGlobalScope": false
       },
       "../src/use-cases/base.usecase.ts": {
