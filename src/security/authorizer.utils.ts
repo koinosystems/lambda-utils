@@ -1,47 +1,49 @@
 /* eslint-disable no-useless-constructor */
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { OSError } from '../presentation/os.error';
+import { ResponseError } from '../presentation/response.error';
 import { ICredential, IRole } from './credential';
 
 export class AuthorizerUtils {
   public async authorizeByAllowedRoles(
     credential: ICredential,
     allowedRoles: IRole[]
-  ): Promise<ICredential> {
+  ): Promise<void> {
     try {
       for (const allowedRole of allowedRoles) {
         if (credential.role === allowedRole) {
-          return Promise.resolve(credential);
+          return;
         }
       }
-      throw new OSError('Unauthorized', 401);
+      throw new ResponseError('Unauthorized', 401);
     } catch (err) {
-      console.log('||error|| ', err);
-      throw new OSError(err.message, err.code ? err.code : err.name ? parseInt(err.name) : 500);
+      throw new ResponseError(
+        err.message,
+        err.code ? err.code : err.name ? parseInt(err.name) : 500
+      );
     }
   }
 
   public async authorizeByForbiddenRoles(
     credential: ICredential,
     forbiddenRoles: IRole[]
-  ): Promise<ICredential> {
+  ): Promise<void> {
     try {
       for (const forbiddenRole of forbiddenRoles) {
         if (credential.role === forbiddenRole) {
-          throw new Error('Unauthorized');
+          throw new ResponseError('Unauthorized', 401);
         }
       }
-      return Promise.resolve(credential);
     } catch (err) {
-      console.log('||error|| ', err);
-      throw new OSError(err.message, err.code ? err.code : err.name ? parseInt(err.name) : 500);
+      throw new ResponseError(
+        err.message,
+        err.code ? err.code : err.name ? parseInt(err.name) : 500
+      );
     }
   }
 
-  public async authorizeByUserId(credential: ICredential, id: string): Promise<ICredential> {
+  public async authorizeByUserId(credential: ICredential, id: string): Promise<void> {
     if (id !== credential.userId) {
-      throw new Error('Unauthorized');
+      throw new ResponseError('Unauthorized', 401);
     }
-    return Promise.resolve(credential);
   }
 }

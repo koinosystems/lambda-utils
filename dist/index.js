@@ -6,6 +6,6 @@ export { SNSMessage } from './message/sns/sns.message';
 export { SESMessage } from './message/ses/ses.message';
 export { LoggerLevel, Logger } from './logger/logger';
 export { ConsoleLogger } from './logger/console/console.logger';
-export { OSError } from './presentation/os.error';
+export { ResponseError } from './presentation/response.error';
 export { formatReponse, formatResponseDownload, responseError, responseSuccess, } from './presentation/response.utils';
 export { BaseUseCase } from './use-cases/base.usecase';

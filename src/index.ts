@@ -1,6 +1,5 @@
 /* SECURITY */
 export { ICredential, ICredentialService } from './security/credential';
-export { IUser, IUserService } from './security/user';
 export { AuthorizerUtils } from './security/authorizer.utils';
 
 /* DATA-SOURCE CLOUDSEARCH */
@@ -26,7 +25,7 @@ export { LoggerLevel, Logger } from './logger/logger';
 export { ConsoleLogger } from './logger/console/console.logger';
 
 /* PRESENTATION */
-export { OSError } from './presentation/os.error';
+export { ResponseError } from './presentation/response.error';
 export {
   formatReponse,
   formatResponseDownload,

@@ -1,37 +1,33 @@
-import { OSError } from '../presentation/os.error';
+import { ResponseError } from '../presentation/response.error';
 export class AuthorizerUtils {
     async authorizeByAllowedRoles(credential, allowedRoles) {
         try {
             for (const allowedRole of allowedRoles) {
                 if (credential.role === allowedRole) {
-                    return Promise.resolve(credential);
+                    return;
                 }
             }
-            throw new OSError('Unauthorized', 401);
+            throw new ResponseError('Unauthorized', 401);
         }
         catch (err) {
-            console.log('||error|| ', err);
-            throw new OSError(err.message, err.code ? err.code : err.name ? parseInt(err.name) : 500);
+            throw new ResponseError(err.message, err.code ? err.code : err.name ? parseInt(err.name) : 500);
         }
     }
     async authorizeByForbiddenRoles(credential, forbiddenRoles) {
         try {
             for (const forbiddenRole of forbiddenRoles) {
                 if (credential.role === forbiddenRole) {
-                    throw new Error('Unauthorized');
+                    throw new ResponseError('Unauthorized', 401);
                 }
             }
-            return Promise.resolve(credential);
         }
         catch (err) {
-            console.log('||error|| ', err);
-            throw new OSError(err.message, err.code ? err.code : err.name ? parseInt(err.name) : 500);
+            throw new ResponseError(err.message, err.code ? err.code : err.name ? parseInt(err.name) : 500);
         }
     }
     async authorizeByUserId(credential, id) {
         if (id !== credential.userId) {
-            throw new Error('Unauthorized');
+            throw new ResponseError('Unauthorized', 401);
         }
-        return Promise.resolve(credential);
     }
 }

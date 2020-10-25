@@ -1,5 +1,4 @@
 export { ICredential, ICredentialService } from './security/credential';
-export { IUser, IUserService } from './security/user';
 export { AuthorizerUtils } from './security/authorizer.utils';
 export { CloudsearchDataSource } from './data-source/cloudsearch/cloudsearch.datasource';
 export { DynamodbDataSource } from './data-source/dynamodb/dynamodb.datasource';
@@ -11,6 +10,6 @@ export { SESMessage } from './message/ses/ses.message';
 export { IEmailContent } from './message/ses/ses-email-content.model';
 export { LoggerLevel, Logger } from './logger/logger';
 export { ConsoleLogger } from './logger/console/console.logger';
-export { OSError } from './presentation/os.error';
+export { ResponseError } from './presentation/response.error';
 export { formatReponse, formatResponseDownload, responseError, responseSuccess, } from './presentation/response.utils';
 export { BaseUseCase } from './use-cases/base.usecase';
