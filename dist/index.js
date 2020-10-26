@@ -1,4 +1,5 @@
 export { IRole, } from './authentication/authentication.model';
+export { CognitoAuthenticationClient } from './authentication/cognito/cognito-authentication.client';
 export { AuthorizerUtils } from './authentication/authorizer.utils';
 export { CloudsearchDataSource } from './data-source/cloudsearch/cloudsearch.datasource';
 export { DynamodbDataSource } from './data-source/dynamodb/dynamodb.datasource';

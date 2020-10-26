@@ -4,6 +4,10 @@
   "description": "@koinosystems/lambda-utils",
   "main": "dist/index.js",
   "dependencies": {
+    "amazon-cognito-identity-js": "^4.5.0",
+    "axios": "^0.21.0",
+    "jsonwebtoken": "^8.5.1",
+    "jwk-to-pem": "^2.0.4",
     "class-validator": "^0.12.2",
     "moment": "^2.29.1"
   },

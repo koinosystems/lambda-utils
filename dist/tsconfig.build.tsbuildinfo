@@ -221,14 +221,9 @@
         "signature": "eac88af154102199e9343958ff2ba8e1992b7b019f3fd8f854e5cc4b74a34c58",
         "affectsGlobalScope": false
       },
-      "../src/presentation/response.error.ts": {
-        "version": "7897c53bb1cddce259524302f47c72147117790a56c3f2f12a33f3b47e9af149",
-        "signature": "db92f1acb827397b82b3bdc9b62ffa5690238583dcf61cb42bc6b016c0ad6758",
-        "affectsGlobalScope": false
-      },
-      "../src/authentication/authorizer.utils.ts": {
-        "version": "39381ed3e0f4b6596152d4d98ed91736eadb2bcc7918e8655298521d1bffe335",
-        "signature": "c4e8f39c61ef61ecb04428b2d8a983eec1d6cc64232c03ed4a676585678e7f87",
+      "../node_modules/amazon-cognito-identity-js/index.d.ts": {
+        "version": "c85b4519f5135cae473166e20517963d23eaba6ee183b53f64818d75d2092bda",
+        "signature": "c85b4519f5135cae473166e20517963d23eaba6ee183b53f64818d75d2092bda",
         "affectsGlobalScope": false
       },
       "../node_modules/aws-sdk/lib/error.d.ts": {
@@ -279,6 +274,26 @@
       "../node_modules/aws-sdk/lib/request.d.ts": {
         "version": "c6efe7c64b9a2e654aa38cf233712b50153019723d0a0b424f620b9cf6d50b02",
         "signature": "c6efe7c64b9a2e654aa38cf233712b50153019723d0a0b424f620b9cf6d50b02",
+        "affectsGlobalScope": false
+      },
+      "../node_modules/aws-sdk/clients/cognitoidentityserviceprovider.d.ts": {
+        "version": "a51f5f08d10e9b1e52f18c4fa9d45b667bd63a3e18b466c2100be3cc5357d708",
+        "signature": "a51f5f08d10e9b1e52f18c4fa9d45b667bd63a3e18b466c2100be3cc5357d708",
+        "affectsGlobalScope": false
+      },
+      "../src/authentication/cognito/cognito-authentication.client.ts": {
+        "version": "3561617f7105b8e8c48e1df9b02bc6f8c938f441975702381fbac604ffcc40c2",
+        "signature": "f40f3a51de97d04d80317b51a995887baa4bd2007c56999a881d3fde41c85078",
+        "affectsGlobalScope": false
+      },
+      "../src/presentation/response.error.ts": {
+        "version": "7897c53bb1cddce259524302f47c72147117790a56c3f2f12a33f3b47e9af149",
+        "signature": "db92f1acb827397b82b3bdc9b62ffa5690238583dcf61cb42bc6b016c0ad6758",
+        "affectsGlobalScope": false
+      },
+      "../src/authentication/authorizer.utils.ts": {
+        "version": "39381ed3e0f4b6596152d4d98ed91736eadb2bcc7918e8655298521d1bffe335",
+        "signature": "c4e8f39c61ef61ecb04428b2d8a983eec1d6cc64232c03ed4a676585678e7f87",
         "affectsGlobalScope": false
       },
       "../node_modules/aws-sdk/clients/acm.d.ts": {
@@ -399,11 +414,6 @@
       "../node_modules/aws-sdk/clients/cognitoidentity.d.ts": {
         "version": "978dd90ed50fe53041c49fb7a684f123b3220c8e81b9fbe663cba21242ad1a9f",
         "signature": "978dd90ed50fe53041c49fb7a684f123b3220c8e81b9fbe663cba21242ad1a9f",
-        "affectsGlobalScope": false
-      },
-      "../node_modules/aws-sdk/clients/cognitoidentityserviceprovider.d.ts": {
-        "version": "a51f5f08d10e9b1e52f18c4fa9d45b667bd63a3e18b466c2100be3cc5357d708",
-        "signature": "a51f5f08d10e9b1e52f18c4fa9d45b667bd63a3e18b466c2100be3cc5357d708",
         "affectsGlobalScope": false
       },
       "../node_modules/aws-sdk/clients/cognitosync.d.ts": {
@@ -1917,8 +1927,8 @@
         "affectsGlobalScope": false
       },
       "../src/index.ts": {
-        "version": "8a750f1f7e57affd3582f1e65adc8218b0200830e0f342f13d10a655aced7674",
-        "signature": "7cc8ab3ead46dec76de006c7cbc7084af38cb961199ae823e522f62887894b19",
+        "version": "fdd83fcc05b26e8e27c3f8d1e13794d9323c576d506cfc178141a1b3e93645fe",
+        "signature": "057d848a8b1fa2b8c4645f9b6300b2b5de253ff4466b010ae212155e35d71a41",
         "affectsGlobalScope": false
       },
       "../node_modules/@types/node/globals.d.ts": {
@@ -4672,6 +4682,10 @@
         "../src/authentication/authentication.model.ts",
         "../src/presentation/response.error.ts"
       ],
+      "../src/authentication/cognito/cognito-authentication.client.ts": [
+        "../node_modules/amazon-cognito-identity-js/index.d.ts",
+        "../node_modules/aws-sdk/clients/cognitoidentityserviceprovider.d.ts"
+      ],
       "../src/data-source/cloudsearch/cloudsearch.datasource.ts": [
         "../node_modules/aws-sdk/clients/cloudsearchdomain.d.ts",
         "../node_modules/aws-sdk/index.d.ts"
@@ -4694,6 +4708,7 @@
         "../src/authentication/authentication.model.ts",
         "../src/authentication/authentication.service.ts",
         "../src/authentication/authorizer.utils.ts",
+        "../src/authentication/cognito/cognito-authentication.client.ts",
         "../src/data-source/cloudsearch/cloudsearch.datasource.ts",
         "../src/data-source/dynamodb/dynamodb.datasource.ts",
         "../src/data-source/dynamodb/dynamodb.model.ts",
@@ -7199,6 +7214,7 @@
         "../src/authentication/authentication.model.ts",
         "../src/authentication/authentication.service.ts",
         "../src/authentication/authorizer.utils.ts",
+        "../src/authentication/cognito/cognito-authentication.client.ts",
         "../src/data-source/cloudsearch/cloudsearch.datasource.ts",
         "../src/data-source/dynamodb/dynamodb.datasource.ts",
         "../src/data-source/dynamodb/dynamodb.model.ts",
@@ -7326,6 +7342,7 @@
       "../node_modules/@types/node/wasi.d.ts",
       "../node_modules/@types/node/worker_threads.d.ts",
       "../node_modules/@types/node/zlib.d.ts",
+      "../node_modules/amazon-cognito-identity-js/index.d.ts",
       "../node_modules/aws-sdk/clients/accessanalyzer.d.ts",
       "../node_modules/aws-sdk/clients/acm.d.ts",
       "../node_modules/aws-sdk/clients/acmpca.d.ts",
@@ -7657,6 +7674,7 @@
       "../src/authentication/authentication.model.ts",
       "../src/authentication/authentication.service.ts",
       "../src/authentication/authorizer.utils.ts",
+      "../src/authentication/cognito/cognito-authentication.client.ts",
       "../src/data-source/cloudsearch/cloudsearch.datasource.ts",
       "../src/data-source/dynamodb/dynamodb.client.ts",
       "../src/data-source/dynamodb/dynamodb.datasource.ts",

@@ -14,6 +14,7 @@ export {
   VerifyTokenRequest,
 } from './authentication/authentication.model';
 export { IAuthenticationService } from './authentication/authentication.service';
+export { CognitoAuthenticationClient } from './authentication/cognito/cognito-authentication.client';
 export { AuthorizerUtils } from './authentication/authorizer.utils';
 
 /* DATA-SOURCE CLOUDSEARCH */
