@@ -5,12 +5,12 @@ export async function formatReponse(statusCode, body, isBase64Encoded, headers) 
         'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept, Authorization, identity-provider, token, Identity-Provider, Token',
         'Access-Control-Allow-Methods': 'GET,HEAD,OPTIONS,POST,PUT',
     };
-    return JSON.parse(JSON.stringify({
+    return Promise.resolve(JSON.parse(JSON.stringify({
         statusCode: statusCode,
         body: JSON.stringify(body),
         isBase64Encoded: isBase64Encoded || false,
         headers: corsHeaders,
-    }));
+    })));
 }
 export async function formatResponseDownload(statusCode, body, fileName) {
     const corsHeaders = {
@@ -47,7 +47,7 @@ export async function responseSuccess(statusCode = 200, headers = {}, data = {})
             data,
         }),
     };
-    return response;
+    return Promise.resolve(response);
 }
 export async function responseError(statusCode = 500, headers = {}, err) {
     console.log(err);
@@ -68,5 +68,5 @@ export async function responseError(statusCode = 500, headers = {}, err) {
             },
         });
     }
-    return response;
+    return Promise.resolve(response);
 }

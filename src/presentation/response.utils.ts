@@ -14,13 +14,15 @@ export async function formatReponse(
       'Origin, X-Requested-With, Content-Type, Accept, Authorization, identity-provider, token, Identity-Provider, Token',
     'Access-Control-Allow-Methods': 'GET,HEAD,OPTIONS,POST,PUT',
   };
-  return JSON.parse(
-    JSON.stringify({
-      statusCode: statusCode,
-      body: JSON.stringify(body),
-      isBase64Encoded: isBase64Encoded || false,
-      headers: corsHeaders,
-    })
+  return Promise.resolve(
+    JSON.parse(
+      JSON.stringify({
+        statusCode: statusCode,
+        body: JSON.stringify(body),
+        isBase64Encoded: isBase64Encoded || false,
+        headers: corsHeaders,
+      })
+    )
   );
 }
 
@@ -78,7 +80,7 @@ export async function responseSuccess(
       data,
     }),
   };
-  return response;
+  return Promise.resolve(response);
 }
 
 export async function responseError(
@@ -112,5 +114,5 @@ export async function responseError(
     });
   }
 
-  return response;
+  return Promise.resolve(response);
 }
