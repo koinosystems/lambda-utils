@@ -1,6 +1,7 @@
 /* SECURITY */
-export { ICredential, ICredentialService } from './security/credential';
+export { ICredential, ICredentialService } from './security/credential.service';
 export { AuthorizerUtils } from './security/authorizer.utils';
+export { CognitoCredentialService } from './security/cognito/cognito-credential.service';
 
 /* DATA-SOURCE CLOUDSEARCH */
 export { CloudsearchDataSource } from './data-source/cloudsearch/cloudsearch.datasource';

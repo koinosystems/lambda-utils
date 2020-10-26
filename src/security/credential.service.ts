@@ -1,5 +1,10 @@
+/* eslint-disable camelcase */
 /* eslint-disable no-unused-vars */
 /* eslint-disable @typescript-eslint/no-explicit-any */
+
+export interface ClaimVerifyRequest {
+  readonly token: string;
+}
 
 export enum IRole {
   User,
@@ -10,26 +15,46 @@ export enum IRole {
 
 export interface ICredential {
   login: string;
-  role: IRole;
   token: string;
   refreshToken: string;
+  role?: IRole;
   [key: string]: any;
 }
 
+export interface PublicKey {
+  alg: string;
+  e: string;
+  kid: string;
+  kty: string;
+  n: string;
+  use: string;
+}
+
+export interface PublicKeys {
+  keys: PublicKey[];
+}
+
+export interface Claim {
+  token_use: string;
+  auth_time: number;
+  iss: string;
+  exp: number;
+  username: string;
+  client_id: string;
+}
+
 export interface ICredentialService {
-  getToken(): Promise<any>;
+  getPublicKeys(): Promise<PublicKey[]>;
 
-  verifyToken(): Promise<any>;
+  verifyToken(request: ClaimVerifyRequest): Promise<void>;
 
-  refreshToken(refreshToken: string, login: string): Promise<any>;
-
-  getCredential(): Promise<ICredential>;
+  refreshToken(refreshToken: string, login: string): Promise<ICredential>;
 
   login(login: string, password: string): Promise<ICredential>;
 
   logout(login: string): Promise<void>;
 
-  createUser(login: string, password: string): Promise<void>;
+  createUser(login: string, password: string): Promise<ICredential>;
 
   changePassword(
     login: string,

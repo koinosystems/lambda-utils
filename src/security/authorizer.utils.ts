@@ -1,7 +1,7 @@
 /* eslint-disable no-useless-constructor */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { ResponseError } from '../presentation/response.error';
-import { ICredential, IRole } from './credential';
+import { ICredential, IRole } from './credential.service';
 
 export class AuthorizerUtils {
   public async authorizeByAllowedRoles(
