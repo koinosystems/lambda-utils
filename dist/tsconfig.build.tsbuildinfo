@@ -282,7 +282,7 @@
         "affectsGlobalScope": false
       },
       "../src/authentication/cognito/cognito-authentication.client.ts": {
-        "version": "4b5ffece333de512a5ec5bed8e5ba9ccdaadccc60fc78f67b55369a48f08bcae",
+        "version": "87f29ad0b309c873711f1b3126cf56481b0f5eb6a372d9272599bf75dd6bb704",
         "signature": "5139cb48c554ef061ece55df302bc7df7163e0c6c10ccc7a21cf88bd166ed809",
         "affectsGlobalScope": false
       },
