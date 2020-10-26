@@ -55,8 +55,8 @@ export async function formatResponseDownload(
 
 export async function responseSuccess(
   statusCode = 200,
-  headers: any = {},
-  data: any = {}
+  data: any = {},
+  headers: any = {}
 ): Promise<APIGatewayProxyResult> {
   const corsHeaders = {
     'Access-Control-Allow-Origin': '*',
@@ -85,8 +85,8 @@ export async function responseSuccess(
 
 export async function responseError(
   statusCode = 500,
-  headers: any = {},
-  err?: Error
+  err?: Error,
+  headers: any = {}
 ): Promise<APIGatewayProxyResult> {
   console.log(err);
 

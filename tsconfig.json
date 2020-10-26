@@ -1,24 +1,14 @@
 {
-  "include": ["./src/**/*.ts"],
   "compilerOptions": {
-    "module": "esnext",
-    "target": "es2020",
+    "module": "commonjs",
     "esModuleInterop": true,
+    "target": "es6",
+    "lib": ["es2019"],
     "noImplicitAny": true,
     "moduleResolution": "node",
-    "baseUrl": "./",
-    "outDir": "dist",
-    "typeRoots": ["node_modules/@types"],
-    "types": ["node", "jest"],
-    "resolveJsonModule": true,
-    "declaration": true,
-    "removeComments": true,
-    "emitDecoratorMetadata": true,
-    "experimentalDecorators": true,
-    "allowSyntheticDefaultImports": true,
-    "sourceMap": false,
-    "incremental": true,
-    "strict": true
+    "sourceMap": true,
+    "outDir": "dist"
   },
-  "exclude": ["node_modules", "dist"]
+  "include": ["src/**/*.ts"],
+  "exclude": ["node_modules/aws-sdk", "**/*.spec.*"]
 }

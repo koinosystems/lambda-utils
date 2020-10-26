@@ -1,4 +1,8 @@
-export var LoggerLevel;
+"use strict";
+/* eslint-disable no-unused-vars */
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.Logger = exports.LoggerLevel = void 0;
+var LoggerLevel;
 (function (LoggerLevel) {
     LoggerLevel[LoggerLevel["fatal"] = 0] = "fatal";
     LoggerLevel[LoggerLevel["error"] = 1] = "error";
@@ -6,8 +10,8 @@ export var LoggerLevel;
     LoggerLevel[LoggerLevel["info"] = 3] = "info";
     LoggerLevel[LoggerLevel["debug"] = 4] = "debug";
     LoggerLevel[LoggerLevel["trace"] = 5] = "trace";
-})(LoggerLevel || (LoggerLevel = {}));
-export class Logger {
+})(LoggerLevel = exports.LoggerLevel || (exports.LoggerLevel = {}));
+class Logger {
     fatal(message, ...optionalParams) {
         this.log(LoggerLevel.fatal, message, optionalParams);
     }
@@ -27,3 +31,5 @@ export class Logger {
         this.log(LoggerLevel.trace, message, optionalParams);
     }
 }
+exports.Logger = Logger;
+//# sourceMappingURL=logger.js.map

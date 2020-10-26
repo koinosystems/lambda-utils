@@ -1,25 +1,42 @@
-import { config } from 'aws-sdk';
-import CloudSearchDomain from 'aws-sdk/clients/cloudsearchdomain';
+"use strict";
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.CloudsearchDataSource = void 0;
+const aws_sdk_1 = require("aws-sdk");
+const cloudsearchdomain_1 = __importDefault(require("aws-sdk/clients/cloudsearchdomain"));
 const { AWS_REGION, AWS_ACCESS_KEY, AWS_SECRET_ACCESS_KEY } = process.env;
-config.update({
+aws_sdk_1.config.update({
     region: AWS_REGION,
     accessKeyId: AWS_ACCESS_KEY,
     secretAccessKey: AWS_SECRET_ACCESS_KEY,
 });
-export class CloudsearchDataSource {
+class CloudsearchDataSource {
     constructor(domain) {
-        this.cloudSearchDomain = new CloudSearchDomain({
+        this.cloudSearchDomain = new cloudsearchdomain_1.default({
             endpoint: domain,
             apiVersion: '2013-01-01',
         });
     }
-    async search(params) {
-        return new Promise((resolve, reject) => {
-            this.cloudSearchDomain.search(params, (err, data) => {
-                if (err) {
-                    reject(err);
-                }
-                return resolve(data);
+    search(params) {
+        return __awaiter(this, void 0, void 0, function* () {
+            return new Promise((resolve, reject) => {
+                this.cloudSearchDomain.search(params, (err, data) => {
+                    if (err) {
+                        reject(err);
+                    }
+                    return resolve(data);
+                });
             });
         });
     }
@@ -91,3 +108,5 @@ export class CloudsearchDataSource {
         return `(phrase ${options}'${phrase}')`;
     }
 }
+exports.CloudsearchDataSource = CloudsearchDataSource;
+//# sourceMappingURL=cloudsearch.datasource.js.map
