@@ -1,1 +1,0 @@
-{"version":3,"file":"base.usecase.js","sourceRoot":"","sources":["../../src/use-cases/base.usecase.ts"],"names":[],"mappings":";;;;;;;;;;;;AAAA,MAAsB,WAAW;IAGlB,OAAO;;YAClB,IAAI;gBACF,OAAO,MAAM,IAAI,CAAC,YAAY,EAAE,CAAC;aAClC;YAAC,OAAO,GAAG,EAAE;gBACZ,OAAO,CAAC,KAAK,CAAC,GAAG,CAAC,CAAC;gBACnB,MAAM,GAAG,CAAC;aACX;QACH,CAAC;KAAA;CACF;AAXD,kCAWC"}

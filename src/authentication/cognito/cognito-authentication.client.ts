@@ -49,8 +49,8 @@ export class CognitoAuthenticationClient {
     return new Promise((resolve, reject) => {
       try {
         const userPool = new CognitoUserPool({
-          UserPoolId: COGNITO_POOL_ID,
-          ClientId: COGNITO_CLIENT_ID,
+          UserPoolId: COGNITO_POOL_ID!,
+          ClientId: COGNITO_CLIENT_ID!,
         });
         const cognitoUser = new CognitoUser({ Username: username, Pool: userPool });
         return cognitoUser.refreshSession(
@@ -77,8 +77,8 @@ export class CognitoAuthenticationClient {
           Password: password,
         });
         const userPool = new CognitoUserPool({
-          UserPoolId: COGNITO_POOL_ID,
-          ClientId: COGNITO_CLIENT_ID,
+          UserPoolId: COGNITO_POOL_ID!,
+          ClientId: COGNITO_CLIENT_ID!,
         });
         const cognitoUser = new CognitoUser({ Username: username, Pool: userPool });
         return cognitoUser.authenticateUser(authenticationDetails, {
@@ -100,8 +100,8 @@ export class CognitoAuthenticationClient {
     return new Promise((resolve, reject) => {
       try {
         const userPool = new CognitoUserPool({
-          UserPoolId: COGNITO_POOL_ID,
-          ClientId: COGNITO_CLIENT_ID,
+          UserPoolId: COGNITO_POOL_ID!,
+          ClientId: COGNITO_CLIENT_ID!,
         });
         const cognitoUser = new CognitoUser({ Username: username, Pool: userPool });
         cognitoUser.globalSignOut({
@@ -128,7 +128,7 @@ export class CognitoAuthenticationClient {
         });
         client.adminConfirmSignUp(
           {
-            UserPoolId: COGNITO_POOL_ID,
+            UserPoolId: COGNITO_POOL_ID!,
             Username: username,
           },
           (err: Error) => {
@@ -149,8 +149,8 @@ export class CognitoAuthenticationClient {
     return new Promise((resolve, reject) => {
       try {
         const userPool = new CognitoUserPool({
-          UserPoolId: COGNITO_POOL_ID,
-          ClientId: COGNITO_CLIENT_ID,
+          UserPoolId: COGNITO_POOL_ID!,
+          ClientId: COGNITO_CLIENT_ID!,
         });
         userPool.signUp(
           username,
@@ -175,8 +175,8 @@ export class CognitoAuthenticationClient {
     return new Promise((resolve, reject) => {
       try {
         const userPool = new CognitoUserPool({
-          UserPoolId: COGNITO_POOL_ID,
-          ClientId: COGNITO_CLIENT_ID,
+          UserPoolId: COGNITO_POOL_ID!,
+          ClientId: COGNITO_CLIENT_ID!,
         });
         const cognitoUser = new CognitoUser({ Username: username, Pool: userPool });
         cognitoUser.changePassword(oldPassword, newPassword, (err?: Error) => {
@@ -196,8 +196,8 @@ export class CognitoAuthenticationClient {
     return new Promise((resolve, reject) => {
       try {
         const userPool = new CognitoUserPool({
-          UserPoolId: COGNITO_POOL_ID,
-          ClientId: COGNITO_CLIENT_ID,
+          UserPoolId: COGNITO_POOL_ID!,
+          ClientId: COGNITO_CLIENT_ID!,
         });
         const cognitoUser = new CognitoUser({ Username: username, Pool: userPool });
         cognitoUser.forgotPassword({
@@ -222,8 +222,8 @@ export class CognitoAuthenticationClient {
     return new Promise((resolve, reject) => {
       try {
         const userPool = new CognitoUserPool({
-          UserPoolId: COGNITO_POOL_ID,
-          ClientId: COGNITO_CLIENT_ID,
+          UserPoolId: COGNITO_POOL_ID!,
+          ClientId: COGNITO_CLIENT_ID!,
         });
         const cognitoUser = new CognitoUser({ Username: username, Pool: userPool });
         cognitoUser.confirmPassword(verificationCode, password, {
@@ -250,7 +250,7 @@ export class CognitoAuthenticationClient {
         });
         client.adminDeleteUser(
           {
-            UserPoolId: COGNITO_POOL_ID,
+            UserPoolId: COGNITO_POOL_ID!,
             Username: username,
           },
           (err: Error) => {
