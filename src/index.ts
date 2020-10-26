@@ -1,26 +1,26 @@
 /* AUTHENTICATION */
-export * as authentication from './authentication';
+export * from './authentication';
 
 /* DATA-SOURCE CLOUDSEARCH */
-export * as cloudsearch from './data-source/cloudsearch';
+export * from './data-source/cloudsearch';
 
 /* DATA-SOURCE DYNAMODB */
-export * as dynamodb from './data-source/dynamodb';
+export * from './data-source/dynamodb';
 
 /* DATA-SOURCE RDS */
-export * as rds from './data-source/rds';
+export * from './data-source/rds';
 
 /* MESSAGE SNS */
-export * as sns from './message/sns';
+export * from './message/sns';
 
 /* MESSAGE SES */
-export * as ses from './message/ses';
+export * from './message/ses';
 
 /* LOGGER */
-export * as logger from './logger';
+export * from './logger';
 
 /* PRESENTATION */
-export * as presentation from './presentation';
+export * from './presentation';
 
 // /* USECASES */
-export * as useacase from './use-cases';
+export * from './use-cases';
