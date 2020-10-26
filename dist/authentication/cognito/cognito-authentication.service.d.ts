@@ -8,7 +8,7 @@ export interface Claim {
     username: string;
     client_id: string;
 }
-export declare class CognitoCredentialService implements IAuthenticationService {
+export declare class CognitoAuthenticationService implements IAuthenticationService {
     private cognitoPool;
     private cognitoClient;
     private cacheKeys?;

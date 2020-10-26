@@ -52,7 +52,7 @@ export interface Claim {
   client_id: string;
 }
 
-export class CognitoCredentialService implements IAuthenticationService {
+export class CognitoAuthenticationService implements IAuthenticationService {
   private cognitoPool: string;
   private cognitoClient: string;
   private cacheKeys?: PublicKey[];

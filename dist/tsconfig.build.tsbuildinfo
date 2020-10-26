@@ -1882,8 +1882,8 @@
         "affectsGlobalScope": false
       },
       "../src/authentication/cognito/cognito-authentication.service.ts": {
-        "version": "46251b76ac568bf070ae324399eb41e22071402a33639d0da3d775c679b5ad71",
-        "signature": "309ba512f68e064f987066a59d1e0094b3759dd5d4f084fb3174b223a2206e9d",
+        "version": "2717cd29007d8bca09660086ec302b466ec1e758e60623260f7bcefd96fee531",
+        "signature": "a05bcbb8b2260e8ee791764a1241c9b9c4f613bc789766e5a4d57df7783c1f11",
         "affectsGlobalScope": false
       },
       "../src/data-source/cloudsearch/cloudsearch.datasource.ts": {
@@ -2177,8 +2177,8 @@
         "affectsGlobalScope": false
       },
       "../src/index.ts": {
-        "version": "bb7b599fb3e0fa0d1e2f921d3eb05f1acd4d110509a8c0a468e3b8cb6c83add8",
-        "signature": "f896cd87fcaf47d10ab7b6257a337c9e282e980b6b18caa5d0766ce26af68eed",
+        "version": "fb39e9b198940582a2046a3ff7873964512e27cfdb2e216bf5397941bcb04624",
+        "signature": "aab9b40dc08dff02ce7a2bdbe39b19129ef6f2f8645de5a9a0626eeee0a7f796",
         "affectsGlobalScope": false
       },
       "../node_modules/jest-diff/build/cleanupsemantic.d.ts": {

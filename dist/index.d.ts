@@ -1,7 +1,7 @@
 export { IAuthentication, IRole, ChangePasswordRequest, ConfirmDeleteUserRequest, ConfirmPasswordRequest, CreateUserRequest, DeleteUserRequest, ForgotPasswordRequest, LoginRequest, LogoutRequest, RefreshTokenRequest, VerifyTokenRequest, } from './authentication/authentication.model';
 export { IAuthenticationService } from './authentication/authentication.service';
 export { AuthorizerUtils } from './authentication/authorizer.utils';
-export { CognitoCredentialService } from './authentication/cognito/cognito-authentication.service';
+export { CognitoAuthenticationService } from './authentication/cognito/cognito-authentication.service';
 export { CloudsearchDataSource } from './data-source/cloudsearch/cloudsearch.datasource';
 export { DynamodbDataSource } from './data-source/dynamodb/dynamodb.datasource';
 export { IModel } from './data-source/dynamodb/dynamodb.model';

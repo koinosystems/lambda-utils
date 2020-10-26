@@ -6,7 +6,7 @@ import jwt from 'jsonwebtoken';
 import jwkToPem from 'jwk-to-pem';
 import { ResponseError } from '../../presentation/response.error';
 const { AWS_REGION, COGNITO_POOL_ID, COGNITO_CLIENT_ID } = process.env;
-export class CognitoCredentialService {
+export class CognitoAuthenticationService {
     constructor() {
         this.verifyPromised = promisify(jwt.verify.bind(jwt));
         if (!COGNITO_POOL_ID || !COGNITO_CLIENT_ID) {
