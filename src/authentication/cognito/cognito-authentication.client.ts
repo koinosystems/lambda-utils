@@ -1,3 +1,4 @@
+/* eslint-disable camelcase */
 import 'cross-fetch/polyfill';
 import * as Axios from 'axios';
 import * as AWS from 'aws-sdk';
@@ -9,9 +10,30 @@ import {
   CognitoUserPool,
   CognitoUserSession,
 } from 'amazon-cognito-identity-js';
-import { CognitoPublicKey, CognitoPublicKeys } from '../authentication.model';
 
 const { AWS_REGION, COGNITO_POOL_ID, COGNITO_CLIENT_ID } = process.env;
+
+export interface CognitoPublicKey {
+  alg: string;
+  e: string;
+  kid: string;
+  kty: string;
+  n: string;
+  use: string;
+}
+
+export interface CognitoPublicKeys {
+  keys: CognitoPublicKey[];
+}
+
+export interface CognitoClaim {
+  token_use: string;
+  auth_time: number;
+  iss: string;
+  exp: number;
+  username: string;
+  client_id: string;
+}
 
 export class CognitoAuthenticationClient {
   async getPublicKeys(): Promise<CognitoPublicKey[]> {

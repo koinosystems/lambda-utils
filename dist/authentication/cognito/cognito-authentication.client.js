@@ -29,6 +29,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.CognitoAuthenticationClient = void 0;
+/* eslint-disable camelcase */
 require("cross-fetch/polyfill");
 const Axios = __importStar(require("axios"));
 const AWS = __importStar(require("aws-sdk"));

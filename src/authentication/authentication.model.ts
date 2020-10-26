@@ -8,28 +8,6 @@ export enum IRole {
   Anonymous,
 }
 
-export interface CognitoPublicKey {
-  alg: string;
-  e: string;
-  kid: string;
-  kty: string;
-  n: string;
-  use: string;
-}
-
-export interface CognitoPublicKeys {
-  keys: CognitoPublicKey[];
-}
-
-export interface CognitoClaim {
-  token_use: string;
-  auth_time: number;
-  iss: string;
-  exp: number;
-  username: string;
-  client_id: string;
-}
-
 export interface IAuthentication {
   login: string;
   token: string;

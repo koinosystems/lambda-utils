@@ -1,26 +1,57 @@
 /* AUTHENTICATION */
-export * from './authentication';
+export {
+  IAuthentication,
+  IRole,
+  ChangePasswordRequest,
+  ConfirmDeleteUserRequest,
+  ConfirmPasswordRequest,
+  CreateUserRequest,
+  DeleteUserRequest,
+  ForgotPasswordRequest,
+  LoginRequest,
+  LogoutRequest,
+  RefreshTokenRequest,
+  VerifyTokenRequest,
+} from './authentication/authentication.model';
+export { IAuthenticationService } from './authentication/authentication.service';
+export {
+  CognitoClaim,
+  CognitoPublicKey,
+  CognitoPublicKeys,
+  CognitoAuthenticationClient,
+} from './authentication/cognito/cognito-authentication.client';
+export { AuthorizerUtils } from './authentication/authorizer.utils';
 
 /* DATA-SOURCE CLOUDSEARCH */
-export * from './data-source/cloudsearch';
+export { CloudsearchDataSource } from './data-source/cloudsearch/cloudsearch.datasource';
 
 /* DATA-SOURCE DYNAMODB */
-export * from './data-source/dynamodb';
+export { DynamodbDataSource } from './data-source/dynamodb/dynamodb.datasource';
+export { IModel } from './data-source/dynamodb/dynamodb.model';
 
 /* DATA-SOURCE RDS */
-export * from './data-source/rds';
+export { RDSDataSource } from './data-source/rds/rds.datasource';
+export { IEntity } from './data-source/rds/rds.model';
 
 /* MESSAGE SNS */
-export * from './message/sns';
+export { SNSMessage } from './message/sns/sns.message';
 
 /* MESSAGE SES */
-export * from './message/ses';
+export { SESMessage } from './message/ses/ses.message';
+export { IEmailContent } from './message/ses/ses-email-content.model';
 
 /* LOGGER */
-export * from './logger';
+export { LoggerLevel, Logger } from './logger/logger';
+export { ConsoleLogger } from './logger/console/console.logger';
 
 /* PRESENTATION */
-export * from './presentation';
+export { ResponseError } from './presentation/response.error';
+export {
+  formatReponse,
+  formatResponseDownload,
+  responseError,
+  responseSuccess,
+} from './presentation/response.utils';
 
-// /* USECASES */
-export * from './use-cases';
+/* USECASES */
+export { BaseUseCase } from './use-cases/base.usecase';
