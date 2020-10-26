@@ -7,6 +7,7 @@
     "amazon-cognito-identity-js": "^4.5.0",
     "axios": "^0.21.0",
     "class-validator": "^0.12.2",
+    "cross-fetch": "^3.0.6",
     "moment": "^2.29.1"
   },
   "devDependencies": {
@@ -19,7 +20,6 @@
     "@typescript-eslint/eslint-plugin": "^4.5.0",
     "@typescript-eslint/parser": "^4.5.0",
     "aws-sdk": "^2.778.0",
-    "cross-fetch": "^3.0.6",
     "eslint": "^7.12.0",
     "eslint-config-prettier": "^6.14.0",
     "eslint-config-standard": "^15.0.0",
