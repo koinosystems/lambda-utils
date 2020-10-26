@@ -1,11 +1,11 @@
 /* eslint-disable no-useless-constructor */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { ResponseError } from '../presentation/response.error';
-import { ICredential, IRole } from './credential.service';
+import { IAuthentication, IRole } from './authentication.model';
 
 export class AuthorizerUtils {
   public async authorizeByAllowedRoles(
-    credential: ICredential,
+    credential: IAuthentication,
     allowedRoles: IRole[]
   ): Promise<void> {
     try {
@@ -24,7 +24,7 @@ export class AuthorizerUtils {
   }
 
   public async authorizeByForbiddenRoles(
-    credential: ICredential,
+    credential: IAuthentication,
     forbiddenRoles: IRole[]
   ): Promise<void> {
     try {
@@ -41,7 +41,7 @@ export class AuthorizerUtils {
     }
   }
 
-  public async authorizeByUserId(credential: ICredential, id: string): Promise<void> {
+  public async authorizeByUserId(credential: IAuthentication, id: string): Promise<void> {
     if (id !== credential.userId) {
       throw new ResponseError('Unauthorized', 401);
     }

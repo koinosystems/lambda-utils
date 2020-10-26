@@ -1,7 +1,21 @@
-/* SECURITY */
-export { ICredential, ICredentialService } from './security/credential.service';
-export { AuthorizerUtils } from './security/authorizer.utils';
-export { CognitoCredentialService } from './security/cognito/cognito-credential.service';
+/* AUTHENTICATION */
+export {
+  IAuthentication,
+  IRole,
+  ChangePasswordRequest,
+  ConfirmDeleteUserRequest,
+  ConfirmPasswordRequest,
+  CreateUserRequest,
+  DeleteUserRequest,
+  ForgotPasswordRequest,
+  LoginRequest,
+  LogoutRequest,
+  RefreshTokenRequest,
+  VerifyTokenRequest,
+} from './authentication/authentication.model';
+export { IAuthenticationService } from './authentication/authentication.service';
+export { AuthorizerUtils } from './authentication/authorizer.utils';
+export { CognitoCredentialService } from './authentication/cognito/cognito-authentication.service';
 
 /* DATA-SOURCE CLOUDSEARCH */
 export { CloudsearchDataSource } from './data-source/cloudsearch/cloudsearch.datasource';

@@ -1,5 +1,6 @@
-export { AuthorizerUtils } from './security/authorizer.utils';
-export { CognitoCredentialService } from './security/cognito/cognito-credential.service';
+export { IRole, } from './authentication/authentication.model';
+export { AuthorizerUtils } from './authentication/authorizer.utils';
+export { CognitoCredentialService } from './authentication/cognito/cognito-authentication.service';
 export { CloudsearchDataSource } from './data-source/cloudsearch/cloudsearch.datasource';
 export { DynamodbDataSource } from './data-source/dynamodb/dynamodb.datasource';
 export { RDSDataSource } from './data-source/rds/rds.datasource';

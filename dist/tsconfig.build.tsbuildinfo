@@ -211,9 +211,14 @@
         "signature": "f58c6d0669d1ee04b2fcb0e87fb949b6828602f3f29c7bf6c76a214f16fd50d5",
         "affectsGlobalScope": false
       },
-      "../src/security/credential.service.ts": {
-        "version": "071cc90b729777c254181aa1de76a23bf942e0d70f1efd2a5cd331de214f457e",
-        "signature": "688f088e548d614e9a0d17bdd989bcd494e5c2ee380c2dea61cca8159d0f1cd8",
+      "../src/authentication/authentication.model.ts": {
+        "version": "f3e7ef7e6ccdd2199922427018532467eefbff1738aea9846af5de96c2f75536",
+        "signature": "8bd59f54aee0bbecbf96851a80f38899cbf6c1b4df0e3410c4d4fef23d2af297",
+        "affectsGlobalScope": false
+      },
+      "../src/authentication/authentication.service.ts": {
+        "version": "d0daf875a088d8671b0cd360c57c2d159c61061c95539ced09be8c2a5b4bca99",
+        "signature": "eac88af154102199e9343958ff2ba8e1992b7b019f3fd8f854e5cc4b74a34c58",
         "affectsGlobalScope": false
       },
       "../src/presentation/response.error.ts": {
@@ -221,9 +226,9 @@
         "signature": "db92f1acb827397b82b3bdc9b62ffa5690238583dcf61cb42bc6b016c0ad6758",
         "affectsGlobalScope": false
       },
-      "../src/security/authorizer.utils.ts": {
-        "version": "bd088d30bc19ba7eb58c37987c5a199522bf644d1659b784a7ea7898f814d3af",
-        "signature": "e3391f695b4d110945fcd15a31fa94f2e573c450ed23db801dabc6587d1eb98f",
+      "../src/authentication/authorizer.utils.ts": {
+        "version": "39381ed3e0f4b6596152d4d98ed91736eadb2bcc7918e8655298521d1bffe335",
+        "signature": "c4e8f39c61ef61ecb04428b2d8a983eec1d6cc64232c03ed4a676585678e7f87",
         "affectsGlobalScope": false
       },
       "../node_modules/aws-sdk/lib/error.d.ts": {
@@ -1876,9 +1881,9 @@
         "signature": "e62482624fc546445a7d9df617a136a9d0dd91719be96056219ac49882a8318c",
         "affectsGlobalScope": false
       },
-      "../src/security/cognito/cognito-credential.service.ts": {
-        "version": "b5343ab718b3c9c0edbace92a7b80c6b9d5a16628535c000ed033c7bef9770ae",
-        "signature": "1c09b1879165db3363f8892eb47afa9472f36ea8dd899ae6f6ec26b5b6eaf220",
+      "../src/authentication/cognito/cognito-authentication.service.ts": {
+        "version": "46251b76ac568bf070ae324399eb41e22071402a33639d0da3d775c679b5ad71",
+        "signature": "309ba512f68e064f987066a59d1e0094b3759dd5d4f084fb3174b223a2206e9d",
         "affectsGlobalScope": false
       },
       "../src/data-source/cloudsearch/cloudsearch.datasource.ts": {
@@ -2172,8 +2177,8 @@
         "affectsGlobalScope": false
       },
       "../src/index.ts": {
-        "version": "d5546ec610b22faef8496ef730c79baa2fc7028d1b68b5587ac621fe24734b26",
-        "signature": "b0f4e2a58ea36c5199b58164b2b32ef257df87e679e9c15515b3665dd2d3be04",
+        "version": "bb7b599fb3e0fa0d1e2f921d3eb05f1acd4d110509a8c0a468e3b8cb6c83add8",
+        "signature": "f896cd87fcaf47d10ab7b6257a337c9e282e980b6b18caa5d0766ce26af68eed",
         "affectsGlobalScope": false
       },
       "../node_modules/jest-diff/build/cleanupsemantic.d.ts": {
@@ -4688,6 +4693,24 @@
       "../node_modules/pretty-format/build/index.d.ts": [
         "../node_modules/pretty-format/build/types.d.ts"
       ],
+      "../src/authentication/authentication.service.ts": [
+        "../src/authentication/authentication.model.ts"
+      ],
+      "../src/authentication/authorizer.utils.ts": [
+        "../src/authentication/authentication.model.ts",
+        "../src/presentation/response.error.ts"
+      ],
+      "../src/authentication/cognito/cognito-authentication.service.ts": [
+        "../node_modules/@types/jsonwebtoken/index.d.ts",
+        "../node_modules/@types/jwk-to-pem/index.d.ts",
+        "../node_modules/@types/node/util.d.ts",
+        "../node_modules/amazon-cognito-identity-js/index.d.ts",
+        "../node_modules/aws-sdk/index.d.ts",
+        "../node_modules/axios/index.d.ts",
+        "../src/authentication/authentication.model.ts",
+        "../src/authentication/authentication.service.ts",
+        "../src/presentation/response.error.ts"
+      ],
       "../src/data-source/cloudsearch/cloudsearch.datasource.ts": [
         "../node_modules/aws-sdk/clients/cloudsearchdomain.d.ts",
         "../node_modules/aws-sdk/index.d.ts"
@@ -4707,6 +4730,10 @@
         "../src/data-source/rds/rds.model.ts"
       ],
       "../src/index.ts": [
+        "../src/authentication/authentication.model.ts",
+        "../src/authentication/authentication.service.ts",
+        "../src/authentication/authorizer.utils.ts",
+        "../src/authentication/cognito/cognito-authentication.service.ts",
         "../src/data-source/cloudsearch/cloudsearch.datasource.ts",
         "../src/data-source/dynamodb/dynamodb.datasource.ts",
         "../src/data-source/dynamodb/dynamodb.model.ts",
@@ -4719,9 +4746,6 @@
         "../src/message/sns/sns.message.ts",
         "../src/presentation/response.error.ts",
         "../src/presentation/response.utils.ts",
-        "../src/security/authorizer.utils.ts",
-        "../src/security/cognito/cognito-credential.service.ts",
-        "../src/security/credential.service.ts",
         "../src/use-cases/base.usecase.ts"
       ],
       "../src/logger/console/console.logger.ts": [
@@ -4747,20 +4771,6 @@
       ],
       "../src/presentation/response.utils.ts": [
         "../node_modules/@types/aws-lambda/index.d.ts"
-      ],
-      "../src/security/authorizer.utils.ts": [
-        "../src/presentation/response.error.ts",
-        "../src/security/credential.service.ts"
-      ],
-      "../src/security/cognito/cognito-credential.service.ts": [
-        "../node_modules/@types/jsonwebtoken/index.d.ts",
-        "../node_modules/@types/jwk-to-pem/index.d.ts",
-        "../node_modules/@types/node/util.d.ts",
-        "../node_modules/amazon-cognito-identity-js/index.d.ts",
-        "../node_modules/aws-sdk/index.d.ts",
-        "../node_modules/axios/index.d.ts",
-        "../src/presentation/response.error.ts",
-        "../src/security/credential.service.ts"
       ]
     },
     "exportedModulesMap": {
@@ -7207,6 +7217,16 @@
       "../node_modules/pretty-format/build/index.d.ts": [
         "../node_modules/pretty-format/build/types.d.ts"
       ],
+      "../src/authentication/authentication.service.ts": [
+        "../src/authentication/authentication.model.ts"
+      ],
+      "../src/authentication/authorizer.utils.ts": [
+        "../src/authentication/authentication.model.ts"
+      ],
+      "../src/authentication/cognito/cognito-authentication.service.ts": [
+        "../src/authentication/authentication.model.ts",
+        "../src/authentication/authentication.service.ts"
+      ],
       "../src/data-source/cloudsearch/cloudsearch.datasource.ts": [
         "../node_modules/aws-sdk/clients/cloudsearchdomain.d.ts"
       ],
@@ -7223,6 +7243,10 @@
         "../src/data-source/rds/rds.model.ts"
       ],
       "../src/index.ts": [
+        "../src/authentication/authentication.model.ts",
+        "../src/authentication/authentication.service.ts",
+        "../src/authentication/authorizer.utils.ts",
+        "../src/authentication/cognito/cognito-authentication.service.ts",
         "../src/data-source/cloudsearch/cloudsearch.datasource.ts",
         "../src/data-source/dynamodb/dynamodb.datasource.ts",
         "../src/data-source/dynamodb/dynamodb.model.ts",
@@ -7235,9 +7259,6 @@
         "../src/message/sns/sns.message.ts",
         "../src/presentation/response.error.ts",
         "../src/presentation/response.utils.ts",
-        "../src/security/authorizer.utils.ts",
-        "../src/security/cognito/cognito-credential.service.ts",
-        "../src/security/credential.service.ts",
         "../src/use-cases/base.usecase.ts"
       ],
       "../src/logger/console/console.logger.ts": [
@@ -7259,12 +7280,6 @@
       ],
       "../src/presentation/response.utils.ts": [
         "../node_modules/@types/aws-lambda/index.d.ts"
-      ],
-      "../src/security/authorizer.utils.ts": [
-        "../src/security/credential.service.ts"
-      ],
-      "../src/security/cognito/cognito-credential.service.ts": [
-        "../src/security/credential.service.ts"
       ]
     },
     "semanticDiagnosticsPerFile": [
@@ -7691,6 +7706,10 @@
       "../node_modules/typescript/lib/lib.esnext.intl.d.ts",
       "../node_modules/typescript/lib/lib.scripthost.d.ts",
       "../node_modules/typescript/lib/lib.webworker.importscripts.d.ts",
+      "../src/authentication/authentication.model.ts",
+      "../src/authentication/authentication.service.ts",
+      "../src/authentication/authorizer.utils.ts",
+      "../src/authentication/cognito/cognito-authentication.service.ts",
       "../src/data-source/cloudsearch/cloudsearch.datasource.ts",
       "../src/data-source/dynamodb/dynamodb.client.ts",
       "../src/data-source/dynamodb/dynamodb.datasource.ts",
@@ -7707,9 +7726,6 @@
       "../src/message/sns/sns.message.ts",
       "../src/presentation/response.error.ts",
       "../src/presentation/response.utils.ts",
-      "../src/security/authorizer.utils.ts",
-      "../src/security/cognito/cognito-credential.service.ts",
-      "../src/security/credential.service.ts",
       "../src/use-cases/base.usecase.ts"
     ]
   },

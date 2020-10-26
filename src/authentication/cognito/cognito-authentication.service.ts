@@ -1,3 +1,4 @@
+/* eslint-disable camelcase */
 import AWS from 'aws-sdk';
 import { promisify } from 'util';
 import * as Axios from 'axios';
@@ -11,19 +12,47 @@ import {
 } from 'amazon-cognito-identity-js';
 import jwt from 'jsonwebtoken';
 import jwkToPem from 'jwk-to-pem';
-import {
-  Claim,
-  ClaimVerifyRequest,
-  ICredential,
-  ICredentialService,
-  PublicKey,
-  PublicKeys,
-} from '../credential.service';
 import { ResponseError } from '../../presentation/response.error';
+import {
+  ChangePasswordRequest,
+  ConfirmDeleteUserRequest,
+  ConfirmPasswordRequest,
+  CreateUserRequest,
+  DeleteUserRequest,
+  ForgotPasswordRequest,
+  IAuthentication,
+  LoginRequest,
+  LogoutRequest,
+  RefreshTokenRequest,
+  VerifyTokenRequest,
+} from '../authentication.model';
+import { IAuthenticationService } from '../authentication.service';
 
 const { AWS_REGION, COGNITO_POOL_ID, COGNITO_CLIENT_ID } = process.env;
 
-export class CognitoCredentialService implements ICredentialService {
+interface PublicKey {
+  alg: string;
+  e: string;
+  kid: string;
+  kty: string;
+  n: string;
+  use: string;
+}
+
+interface PublicKeys {
+  keys: PublicKey[];
+}
+
+export interface Claim {
+  token_use: string;
+  auth_time: number;
+  iss: string;
+  exp: number;
+  username: string;
+  client_id: string;
+}
+
+export class CognitoCredentialService implements IAuthenticationService {
   private cognitoPool: string;
   private cognitoClient: string;
   private cacheKeys?: PublicKey[];
@@ -37,7 +66,7 @@ export class CognitoCredentialService implements ICredentialService {
     this.cognitoClient = COGNITO_CLIENT_ID;
   }
 
-  async getPublicKeys(): Promise<PublicKey[]> {
+  private async getPublicKeys(): Promise<PublicKey[]> {
     const { keys } = (
       await Axios.default.get<PublicKeys>(
         `https://cognito-idp.${AWS_REGION}.amazonaws.com/${this.cognitoPool}/.well-known/jwks.json`
@@ -46,7 +75,7 @@ export class CognitoCredentialService implements ICredentialService {
     return keys;
   }
 
-  async verifyToken(request: ClaimVerifyRequest): Promise<void> {
+  async verifyToken(request: VerifyTokenRequest): Promise<void> {
     try {
       // const [jwtHeader, jwtPayload, jwtSignature] = token.split('.');
       const currentSeconds = Math.floor(new Date().valueOf() / 1000);
@@ -82,21 +111,21 @@ export class CognitoCredentialService implements ICredentialService {
     }
   }
 
-  refreshToken(refreshToken: string, login: string): Promise<ICredential> {
+  refreshToken(request: RefreshTokenRequest): Promise<IAuthentication> {
     return new Promise<any>((resolve, reject) => {
       const userPool = new CognitoUserPool({
         UserPoolId: this.cognitoPool,
         ClientId: this.cognitoClient,
       });
-      const cognitoUser = new CognitoUser({ Username: login, Pool: userPool });
+      const cognitoUser = new CognitoUser({ Username: request.login, Pool: userPool });
       cognitoUser.refreshSession(
-        new CognitoRefreshToken({ RefreshToken: refreshToken }),
+        new CognitoRefreshToken({ RefreshToken: request.refreshToken }),
         (err, result) => {
           if (err) {
             return reject(err);
           }
           return resolve({
-            login,
+            login: request.login,
             token: result.getIdToken().getJwtToken(),
             refreshToken: result.getRefreshToken().getToken(),
           });
@@ -105,16 +134,16 @@ export class CognitoCredentialService implements ICredentialService {
     });
   }
 
-  login(login: string, password: string): Promise<ICredential> {
+  login(request: LoginRequest): Promise<IAuthentication> {
     return new Promise<any>((resolve, reject) => {
       const userPool = new CognitoUserPool({
         UserPoolId: this.cognitoPool,
         ClientId: this.cognitoClient,
       });
-      const cognitoUser = new CognitoUser({ Username: login, Pool: userPool });
+      const cognitoUser = new CognitoUser({ Username: request.login, Pool: userPool });
       const authenticationDetails = new AuthenticationDetails({
-        Username: login,
-        Password: password,
+        Username: request.login,
+        Password: request.password,
       });
       cognitoUser.authenticateUser(authenticationDetails, {
         onSuccess: (result: any) => {
@@ -129,14 +158,14 @@ export class CognitoCredentialService implements ICredentialService {
     });
   }
 
-  logout(login: string): Promise<void> {
+  logout(request: LogoutRequest): Promise<void> {
     return new Promise((resolve, reject) => {
       try {
         const userPool = new CognitoUserPool({
           UserPoolId: this.cognitoPool,
           ClientId: this.cognitoClient,
         });
-        const cognitoUser = new CognitoUser({ Username: login, Pool: userPool });
+        const cognitoUser = new CognitoUser({ Username: request.login, Pool: userPool });
         cognitoUser.globalSignOut({
           onSuccess: () => {
             return resolve();
@@ -151,21 +180,23 @@ export class CognitoCredentialService implements ICredentialService {
     });
   }
 
-  createUser(login: string, password: string): Promise<ICredential> {
-    const cognitoUserAttributes = [new CognitoUserAttribute({ Name: 'email', Value: login })];
+  createUser(request: CreateUserRequest): Promise<IAuthentication> {
+    const cognitoUserAttributes = [
+      new CognitoUserAttribute({ Name: 'email', Value: request.login }),
+    ];
     const authenticationDetails = new AuthenticationDetails({
-      Username: login,
-      Password: password,
+      Username: request.login,
+      Password: request.password,
     });
-    return new Promise<ICredential>((resolve, reject) => {
+    return new Promise<IAuthentication>((resolve, reject) => {
       const userPool = new CognitoUserPool({
         UserPoolId: this.cognitoPool,
         ClientId: this.cognitoClient,
       });
 
       userPool.signUp(
-        login,
-        password,
+        request.login,
+        request.password,
         cognitoUserAttributes,
         [],
         (signUpError?: Error, signUp?: ISignUpResult) => {
@@ -175,7 +206,7 @@ export class CognitoCredentialService implements ICredentialService {
           signUp?.user.authenticateUser(authenticationDetails, {
             onSuccess: async (user: any) => {
               return resolve({
-                login,
+                login: request.login,
                 token: user.getIdToken().getJwtToken(),
                 refreshToken: user.getRefreshToken().getToken(),
               });
@@ -189,17 +220,12 @@ export class CognitoCredentialService implements ICredentialService {
     });
   }
 
-  changePassword(
-    login: string,
-    oldPassword: string,
-    oldPasswordConfirmation: string,
-    newPassword: string
-  ): Promise<void> {
+  changePassword(request: ChangePasswordRequest): Promise<void> {
     return new Promise((resolve, reject) => {
       // TODO remover quando rest estiver sendo utilizado
-      if (oldPassword === newPassword)
+      if (request.oldPassword === request.newPassword)
         throw new ResponseError('oldPassword and newPassword are equals', 400);
-      if (newPassword !== oldPasswordConfirmation)
+      if (request.newPassword !== request.oldPasswordConfirmation)
         throw new ResponseError('newPassword and passwordConfirmation are not equals', 400);
       //   if (!this.verifyPasswordSecurity(newPassword))
       //     throw new ResponseError(
@@ -211,15 +237,15 @@ export class CognitoCredentialService implements ICredentialService {
         ClientId: this.cognitoClient,
       });
 
-      const cognitoUser = new CognitoUser({ Username: login, Pool: userPool });
+      const cognitoUser = new CognitoUser({ Username: request.login, Pool: userPool });
       const authenticationDetails = new AuthenticationDetails({
-        Username: login,
-        Password: oldPassword,
+        Username: request.login,
+        Password: request.oldPassword,
       });
       cognitoUser.authenticateUser(authenticationDetails, {
         onSuccess: (result: any) => {
           // const idToken = result.getIdToken().getJwtToken()
-          cognitoUser.changePassword(oldPassword, newPassword, (err) => {
+          cognitoUser.changePassword(request.oldPassword, request.newPassword, (err) => {
             if (err) {
               return reject(err);
             } else {
@@ -231,7 +257,7 @@ export class CognitoCredentialService implements ICredentialService {
           return reject(new ResponseError(err.message, 400));
         },
         newPasswordRequired: (userAttributes: any, requiredAttributes: any) => {
-          cognitoUser.completeNewPasswordChallenge(newPassword, requiredAttributes, {
+          cognitoUser.completeNewPasswordChallenge(request.newPassword, requiredAttributes, {
             onSuccess: (result: any) => {
               return resolve();
             },
@@ -244,13 +270,13 @@ export class CognitoCredentialService implements ICredentialService {
     });
   }
 
-  forgotPassword(login: string): Promise<void> {
+  forgotPassword(request: ForgotPasswordRequest): Promise<void> {
     return new Promise((resolve, reject) => {
       const userPool = new CognitoUserPool({
         UserPoolId: this.cognitoPool,
         ClientId: this.cognitoClient,
       });
-      const cognitoUser = new CognitoUser({ Username: login, Pool: userPool });
+      const cognitoUser = new CognitoUser({ Username: request.login, Pool: userPool });
       cognitoUser.forgotPassword({
         onSuccess: function (result) {
           console.log('call result: ' + result);
@@ -265,16 +291,10 @@ export class CognitoCredentialService implements ICredentialService {
     });
   }
 
-  confirmPassword(
-    login: string,
-    verificationCode: string,
-    oldPassword: string,
-    oldPasswordConfirmation: string,
-    newPassword: string
-  ): Promise<void> {
+  confirmPassword(request: ConfirmPasswordRequest): Promise<void> {
     return new Promise((resolve, reject) => {
       // TODO remover quando utilizarem rest
-      if (newPassword !== oldPasswordConfirmation)
+      if (request.newPassword !== request.oldPasswordConfirmation)
         throw new ResponseError('newPassword and passwordConfirmarion are not equals', 400);
       //   if (!this.verifyPasswordSecurity(newPassword))
       //     throw new ResponseError(
@@ -286,8 +306,8 @@ export class CognitoCredentialService implements ICredentialService {
         ClientId: this.cognitoClient,
       });
 
-      const cognitoUser = new CognitoUser({ Username: login, Pool: userPool });
-      cognitoUser.confirmPassword(verificationCode, newPassword, {
+      const cognitoUser = new CognitoUser({ Username: request.login, Pool: userPool });
+      cognitoUser.confirmPassword(request.verificationCode, request.newPassword, {
         onSuccess: () => {
           resolve();
         },
@@ -298,14 +318,14 @@ export class CognitoCredentialService implements ICredentialService {
     });
   }
 
-  deleteUser(login: string): Promise<void> {
+  deleteUser(request: DeleteUserRequest): Promise<void> {
     const client = new AWS.CognitoIdentityServiceProvider({
       apiVersion: '2016-04-19',
       region: 'us-east-1',
     });
     const params = {
       UserPoolId: this.cognitoPool,
-      Username: login,
+      Username: request.login,
     };
     return new Promise<void>((resolve, reject) => {
       client.adminDeleteUser(params, (err, data) => {
@@ -318,7 +338,7 @@ export class CognitoCredentialService implements ICredentialService {
     });
   }
 
-  confirmDeleteUser(login: string, verificationCode?: string): Promise<void> {
+  confirmDeleteUser(request: ConfirmDeleteUserRequest): Promise<void> {
     throw new Error('Method not implemented.');
   }
 }
