@@ -10,21 +10,21 @@ import CognitoIdentityServiceProvider from 'aws-sdk/clients/cognitoidentityservi
 
 const { AWS_REGION, COGNITO_POOL_ID, COGNITO_CLIENT_ID } = process.env;
 
+const client = new CognitoIdentityServiceProvider({
+  apiVersion: '2016-04-19',
+  region: AWS_REGION,
+});
+
+const userPool = new CognitoUserPool({
+  UserPoolId: COGNITO_POOL_ID!,
+  ClientId: COGNITO_CLIENT_ID!,
+});
+
 export class CognitoAuthenticationClient {
-  private client = new CognitoIdentityServiceProvider({
-    apiVersion: '2016-04-19',
-    region: AWS_REGION,
-  });
-
-  private userPool = new CognitoUserPool({
-    UserPoolId: COGNITO_POOL_ID!,
-    ClientId: COGNITO_CLIENT_ID!,
-  });
-
-  refreshSession(username: string, refreshToken: string): Promise<any> {
+  async refreshSession(username: string, refreshToken: string): Promise<any> {
     return new Promise<any>((resolve, reject) => {
       try {
-        const cognitoUser = new CognitoUser({ Username: username, Pool: this.userPool });
+        const cognitoUser = new CognitoUser({ Username: username, Pool: userPool });
         cognitoUser.refreshSession(
           new CognitoRefreshToken({ RefreshToken: refreshToken }),
           (err, result) => {
@@ -40,14 +40,14 @@ export class CognitoAuthenticationClient {
     });
   }
 
-  authenticateUser(username: string, password: string): Promise<any> {
+  async authenticateUser(username: string, password: string): Promise<any> {
     return new Promise<any>((resolve, reject) => {
       try {
         const authenticationDetails = new AuthenticationDetails({
           Username: username,
           Password: password,
         });
-        const cognitoUser = new CognitoUser({ Username: username, Pool: this.userPool });
+        const cognitoUser = new CognitoUser({ Username: username, Pool: userPool });
         cognitoUser.authenticateUser(authenticationDetails, {
           onSuccess: (result: any) => {
             return resolve(result);
@@ -62,10 +62,10 @@ export class CognitoAuthenticationClient {
     });
   }
 
-  globalSignOut(username: string): Promise<void> {
+  async globalSignOut(username: string): Promise<void> {
     return new Promise((resolve, reject) => {
       try {
-        const cognitoUser = new CognitoUser({ Username: username, Pool: this.userPool });
+        const cognitoUser = new CognitoUser({ Username: username, Pool: userPool });
         cognitoUser.globalSignOut({
           onSuccess: () => {
             return resolve();
@@ -80,10 +80,10 @@ export class CognitoAuthenticationClient {
     });
   }
 
-  adminConfirmSignUp(username: string): Promise<void> {
+  async adminConfirmSignUp(username: string): Promise<void> {
     return new Promise<void>((resolve, reject) => {
       try {
-        this.client.adminConfirmSignUp(
+        client.adminConfirmSignUp(
           {
             UserPoolId: COGNITO_POOL_ID!,
             Username: username,
@@ -102,10 +102,10 @@ export class CognitoAuthenticationClient {
     });
   }
 
-  signUp(attribute: string, username: string, password: string): Promise<any> {
+  async signUp(attribute: string, username: string, password: string): Promise<any> {
     return new Promise<any>((resolve, reject) => {
       try {
-        this.userPool.signUp(
+        userPool.signUp(
           username,
           password,
           [new CognitoUserAttribute({ Name: attribute, Value: username })],
@@ -123,10 +123,10 @@ export class CognitoAuthenticationClient {
     });
   }
 
-  changePassword(username: string, oldPassword: string, newPassword: string): Promise<void> {
+  async changePassword(username: string, oldPassword: string, newPassword: string): Promise<void> {
     return new Promise((resolve, reject) => {
       try {
-        const cognitoUser = new CognitoUser({ Username: username, Pool: this.userPool });
+        const cognitoUser = new CognitoUser({ Username: username, Pool: userPool });
         cognitoUser.changePassword(oldPassword, newPassword, (err?: Error) => {
           if (err) {
             return reject(err);
@@ -140,10 +140,10 @@ export class CognitoAuthenticationClient {
     });
   }
 
-  forgotPassword(username: string): Promise<void> {
+  async forgotPassword(username: string): Promise<void> {
     return new Promise((resolve, reject) => {
       try {
-        const cognitoUser = new CognitoUser({ Username: username, Pool: this.userPool });
+        const cognitoUser = new CognitoUser({ Username: username, Pool: userPool });
         cognitoUser.forgotPassword({
           onSuccess: function () {},
           onFailure: function (err: Error) {
@@ -159,10 +159,14 @@ export class CognitoAuthenticationClient {
     });
   }
 
-  confirmPassword(username: string, verificationCode: string, password: string): Promise<void> {
+  async confirmPassword(
+    username: string,
+    verificationCode: string,
+    password: string
+  ): Promise<void> {
     return new Promise((resolve, reject) => {
       try {
-        const cognitoUser = new CognitoUser({ Username: username, Pool: this.userPool });
+        const cognitoUser = new CognitoUser({ Username: username, Pool: userPool });
         cognitoUser.confirmPassword(verificationCode, password, {
           onSuccess: () => {
             return resolve();
@@ -177,10 +181,10 @@ export class CognitoAuthenticationClient {
     });
   }
 
-  adminDeleteUser(username: string): Promise<void> {
+  async adminDeleteUser(username: string): Promise<void> {
     return new Promise<void>((resolve, reject) => {
       try {
-        this.client.adminDeleteUser(
+        client.adminDeleteUser(
           {
             UserPoolId: COGNITO_POOL_ID!,
             Username: username,

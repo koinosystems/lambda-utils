@@ -1,6 +1,4 @@
 export declare class CognitoAuthenticationClient {
-    private client;
-    private userPool;
     refreshSession(username: string, refreshToken: string): Promise<any>;
     authenticateUser(username: string, password: string): Promise<any>;
     globalSignOut(username: string): Promise<void>;

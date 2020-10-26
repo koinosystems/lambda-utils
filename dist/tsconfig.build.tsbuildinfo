@@ -282,8 +282,8 @@
         "affectsGlobalScope": false
       },
       "../src/authentication/cognito/cognito-authentication.client.ts": {
-        "version": "3561617f7105b8e8c48e1df9b02bc6f8c938f441975702381fbac604ffcc40c2",
-        "signature": "f40f3a51de97d04d80317b51a995887baa4bd2007c56999a881d3fde41c85078",
+        "version": "4b5ffece333de512a5ec5bed8e5ba9ccdaadccc60fc78f67b55369a48f08bcae",
+        "signature": "5139cb48c554ef061ece55df302bc7df7163e0c6c10ccc7a21cf88bd166ed809",
         "affectsGlobalScope": false
       },
       "../src/presentation/response.error.ts": {
