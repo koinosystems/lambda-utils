@@ -15,7 +15,6 @@ export {
 } from './authentication/authentication.model';
 export { IAuthenticationService } from './authentication/authentication.service';
 export { AuthorizerUtils } from './authentication/authorizer.utils';
-export { CognitoAuthenticationService } from './authentication/cognito/cognito-authentication.service';
 
 /* DATA-SOURCE CLOUDSEARCH */
 export { CloudsearchDataSource } from './data-source/cloudsearch/cloudsearch.datasource';
